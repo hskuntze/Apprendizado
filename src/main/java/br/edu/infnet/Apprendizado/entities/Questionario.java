@@ -11,7 +11,7 @@ public class Questionario extends Conteudo{
 	}
 
 	public Questionario(Long id, String titulo, String desc, Map<Integer, String> questoes, Map<Integer, String> respostas, Integer tempoLimite) {
-		super();
+		super(id, titulo, desc);
 		this.questoes = questoes;
 		this.respostas = respostas;
 		this.tempoLimite = tempoLimite;
@@ -48,6 +48,6 @@ public class Questionario extends Conteudo{
 
 	@Override
 	public String toString() {
-		return "Questionario [questoes=" + questoes + ", respostas=" + respostas + ", tempoLimite=" + tempoLimite + "|||" + this.getId() + " " + this.getTitulo() + " " + this.getDescricao();
+		return "Questionario questoes=" + questoes + ", respostas=" + respostas + "; " + tempoLimite + "; " + super.toString();
 	}
 }

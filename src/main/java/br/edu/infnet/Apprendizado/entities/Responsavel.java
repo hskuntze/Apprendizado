@@ -59,6 +59,7 @@ public class Responsavel {
 
 	@Override
 	public String toString() {
-		return "Nome do responsável " + nome + ", email " + email;
+		return "Responsavel id=" + id + "; " + nome + "; " + email;
 	}
+
 }

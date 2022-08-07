@@ -43,6 +43,7 @@ public class Tarefa extends Conteudo{
 
 	@Override
 	public String toString() {
-		return "A tarefa foi entregue? " + entregue + ". Data final da tarefa " + dataFinal + ", link do repositório da tarefa " + linkTarefa + "|||" + this.getId() + " " + this.getTitulo() + " " + this.getDescricao();
+		return "Tarefa entregue=" + entregue + "; " + dataFinal + "; " + linkTarefa + "; " + super.toString();
 	}
+	
 }

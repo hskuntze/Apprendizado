@@ -12,10 +12,10 @@ import br.edu.infnet.Apprendizado.entities.Questionario;
 public class QuestionarioTeste implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("---- Questionário ----");
-		Long id = 2L;
-		String titulo = "Questionário 2";
-		String descricao = "Descrição do Questionário 2";
+		System.out.println("\n---- Questionário ----");
+		Long id = 1L;
+		String titulo = "Questionário 1";
+		String descricao = "Descrição do Questionário 1";
 		Map<Integer, String> questoes = new HashMap<>();
 		Map<Integer, String> respostas = new HashMap<>();
 		Integer tempoRestante = 180;
@@ -31,6 +31,27 @@ public class QuestionarioTeste implements CommandLineRunner{
 		respostas.put(4, "Boa pergunta");
 		
 		Questionario q1 = new Questionario(id, titulo, descricao, questoes, respostas, tempoRestante);
-		System.out.println(q1);
+		System.out.println(q1 + "\n---------------");
+		
+		Questionario q2 = new Questionario();
+		q2.setId(2L);
+		q2.setTitulo("Questionário 2");
+		q2.setDescricao("Descrição do questionário 2");
+		q2.setTempoLimite(60);
+		
+		Map<Integer, String> questoes2 = new HashMap<>();
+		questoes2.put(1, "Vivamus sit amet quam vel est congue.");
+		questoes2.put(2, "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.");
+		
+		q2.setQuestoes(questoes2);
+		
+		Map<Integer, String> respostas2 = new HashMap<>();
+		
+		respostas2.put(1, "Dolorem ipsum quia dolor sit amet.");
+		respostas2.put(2, "Praesent pharetra, eros id laoreet gravida, ante.");
+		
+		q2.setRespostas(respostas2);
+		
+		System.out.println(q2);
 	}
 }

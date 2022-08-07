@@ -11,7 +11,7 @@ public class Video extends Conteudo{
 	}
 
 	public Video(Long id, String titulo, String desc, String videoUrl, boolean finalizado, Instant acessadoEm) {
-		super();
+		super(id, titulo, desc);
 		this.videoUrl = videoUrl;
 		this.finalizado = finalizado;
 		this.acessadoEm = acessadoEm;
@@ -43,6 +43,6 @@ public class Video extends Conteudo{
 
 	@Override
 	public String toString() {
-		return "URL do vídeo: " + videoUrl + ". Foi finalizado? " + finalizado + ". Último acesso em " + acessadoEm + "|||" + this.getId() + " " + this.getTitulo() + " " + this.getDescricao();
+		return "Video " + videoUrl + "; " + finalizado + "; " + acessadoEm + "; " + super.toString();
 	}
 }

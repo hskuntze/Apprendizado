@@ -98,6 +98,7 @@ public class Curso {
 
 	@Override
 	public String toString() {
-		return "Curso " + titulo + ", iniciado em " + inicio + ", finalizado em " + fim;
+		return "Curso id=" + id + "; " + titulo + "; " + inicio + "; " + fim + "; "
+				+ responsavel + "; " + conteudos;
 	}
 }

@@ -60,6 +60,8 @@ public class Conteudo {
 
 	@Override
 	public String toString() {
-		return "Título do conteúdo " + titulo + ", descrição: " + descricao + "]";
+		return "Conteudo id=" + id + "; " + titulo + ";" + descricao;
 	}
+	
+	
 }
