@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.Apprendizado.entities.Questionario;
 
 @Component
+@Order(3)
 public class QuestionarioTeste implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {

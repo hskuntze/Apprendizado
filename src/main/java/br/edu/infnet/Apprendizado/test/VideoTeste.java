@@ -4,11 +4,13 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.Apprendizado.entities.Video;
 
 @Component
+@Order(1)
 public class VideoTeste implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
@@ -21,7 +23,7 @@ public class VideoTeste implements CommandLineRunner{
 		boolean finalizado = true;
 		
 		Video v1 = new Video(id, titulo, descricao, videoUrl, finalizado, acessadoEm);
-		System.out.println(v1 +"\n-------------");
+		new AppConteudo("Mensagem mega aleatória").relatorio(v1);
 		
 		Video v2 = new Video();
 		v2.setId(2L);
@@ -31,16 +33,13 @@ public class VideoTeste implements CommandLineRunner{
 		v2.setAcessadoEm(Instant.now().minus(1, ChronoUnit.HOURS));
 		v2.setFinalizado(true);
 		
-		System.out.println(v2 +"\n-------------");
-		
 		Video v3 = new Video();
-		v3.setId(2L);
-		v3.setTitulo("Vídeo 2");
-		v3.setDescricao("Descrição do Vídeo 2");
+		v3.setId(3L);
+		v3.setTitulo("Vídeo 3");
+		v3.setDescricao("Descrição do Vídeo 3");
 		v3.setVideoUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 		v3.setAcessadoEm(Instant.now().minus(1, ChronoUnit.HOURS));
 		v3.setFinalizado(true);
 		
-		System.out.println(v3 +"\n-------------");
 	}
 }

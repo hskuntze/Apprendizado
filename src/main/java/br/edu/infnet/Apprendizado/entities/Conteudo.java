@@ -2,7 +2,7 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.util.Objects;
 
-public class Conteudo {
+public abstract class Conteudo {
 	private Long id;
 	private String titulo;
 	private String descricao;
@@ -11,7 +11,6 @@ public class Conteudo {
 	}
 
 	public Conteudo(Long id, String titulo, String descricao) {
-		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
@@ -40,6 +39,8 @@ public class Conteudo {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public abstract String imprimir();
 
 	@Override
 	public int hashCode() {
@@ -60,8 +61,6 @@ public class Conteudo {
 
 	@Override
 	public String toString() {
-		return "Conteudo id=" + id + "; " + titulo + ";" + descricao;
+		return "Conteudo id=" + id + "; " + imprimir();
 	}
-	
-	
 }

@@ -47,7 +47,12 @@ public class Questionario extends Conteudo{
 	}
 
 	@Override
+	public String imprimir() {
+		return getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getTempoLimite() + ", " + getQuestoes() + ", " + getRespostas();
+	}
+	
+	@Override
 	public String toString() {
-		return "Questionario questoes=" + questoes + ", respostas=" + respostas + "; " + tempoLimite + "; " + super.toString();
+		return "Questionario: " + imprimir();
 	}
 }

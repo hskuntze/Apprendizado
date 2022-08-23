@@ -40,9 +40,14 @@ public class Video extends Conteudo{
 	public void setAcessadoEm(Instant acessadoEm) {
 		this.acessadoEm = acessadoEm;
 	}
+	
+	@Override
+	public String imprimir() {
+		return getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getVideoUrl() + ", " + getAcessadoEm() + ", " + isFinalizado();
+	}
 
 	@Override
 	public String toString() {
-		return "Video " + videoUrl + "; " + finalizado + "; " + acessadoEm + "; " + super.toString();
+		return "Video: " + imprimir();
 	}
 }

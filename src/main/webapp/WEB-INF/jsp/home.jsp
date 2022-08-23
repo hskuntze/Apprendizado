@@ -12,6 +12,39 @@
 		<title>Apprendizado</title>
 	</head>
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="#">Menu</a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarNav">
+		      <ul class="navbar-nav">
+		      	<li class="nav-item">
+		          <a class="nav-link" href="/">Home</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/cursos/lista">Cursos</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/responsaveis/lista">Responsáveis</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/conteudos/lista">Conteudos</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/tarefas/lista">Tarefas</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/videos/lista">Vídeos</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="/questionarios/lista">Questionário</a>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
 		<div class="container">
 			<h4 class="mt-3">Classe: Curso</h4>
 			<table class="table table-hover table-striped">

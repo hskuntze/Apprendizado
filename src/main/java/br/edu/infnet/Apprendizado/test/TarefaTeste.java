@@ -4,11 +4,13 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.Apprendizado.entities.Tarefa;
 
 @Component
+@Order(2)
 public class TarefaTeste implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {

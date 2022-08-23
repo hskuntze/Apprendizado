@@ -40,10 +40,14 @@ public class Tarefa extends Conteudo{
 	public void setLinkTarefa(String linkTarefa) {
 		this.linkTarefa = linkTarefa;
 	}
+	
+	@Override
+	public String imprimir() {
+		return getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getLinkTarefa() + ", " + getDataFinal() + ", " + isEntregue();
+	}
 
 	@Override
 	public String toString() {
-		return "Tarefa entregue=" + entregue + "; " + dataFinal + "; " + linkTarefa + "; " + super.toString();
+		return "Tarefa: " + imprimir();
 	}
-	
 }
