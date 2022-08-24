@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,57 +23,21 @@
 				<th scope="col">URL do vídeo</th>
 				<th scope="col">Finalizado</th>
 				<th scope="col">Acessado em</th>
+				<th scope="col">#</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td>Java 1</td>
-				<td>Aula 1: Programação Orientada a Objetos</td>
-				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
-				<td>Sim</td>
-				<td>14:51:22T22/02/2022Z</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>Java 1</td>
-				<td>Aula 2: Básico do Java</td>
-				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
-				<td>Sim</td>
-				<td>08:11:41T25/02/2022Z</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>Java 1</td>
-				<td>Aula 3: Básico do Java 2</td>
-				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
-				<td>Não</td>
-				<td>-</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>React 1</td>
-				<td>Aula 1: Componentes</td>
-				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
-				<td>Sim</td>
-				<td>15:18:29T23/02/2022Z</td>
-			</tr>
-			<tr>
-				<td>5</td>
-				<td>React 2</td>
-				<td>Aula 2: Rotas</td>
-				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
-				<td>Não</td>
-				<td>-</td>
-			</tr>
-			<tr>
-				<td>6</td>
-				<td>React 3</td>
-				<td>Aula 3: Estado</td>
-				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
-				<td>Não</td>
-				<td>-</td>
-			</tr>
+			<c:forEach var="b" items="${listagemVideos}">
+				<tr>
+					<td>${b.id}</td>
+					<td>${b.titulo}</td>
+					<td>${b.descricao}</td>
+					<td><a href="${b.videoUrl}">Link</a></td>
+					<td>${b.finalizado}</td>
+					<td>${b.acessadoEm}</td>
+					<td><a href="/videos/${b.id}/excluir">Excluir</a></td>
+				</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 </body>

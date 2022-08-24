@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.Apprendizado.controller.QuestionarioController;
 import br.edu.infnet.Apprendizado.entities.Questionario;
 
 @Component
@@ -15,28 +16,28 @@ public class QuestionarioTeste implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("\n---- Questionário ----");
-		Long id = 1L;
-		String titulo = "Questionário 1";
-		String descricao = "Descrição do Questionário 1";
-		Map<Integer, String> questoes = new HashMap<>();
-		Map<Integer, String> respostas = new HashMap<>();
-		Integer tempoRestante = 180;
+		Questionario q1 = new Questionario();
+		q1.setTitulo("Questionário 1");
+		q1.setDescricao("Descrição do questionário 1");
+		q1.setTempoLimite(30);
 		
-		questoes.put(1, "Qual a cor do cavalo branco de Napoleão?");
-		questoes.put(2, "Qual a capital da Turquia?");
-		questoes.put(3, "O que comem os três tigres tristes?");
-		questoes.put(4, "Onde está o Wally?");
+		Map<Integer, String> questoes1 = new HashMap<>();
+		questoes1.put(1, "Qual a cor do cavalo branco de Napoleão?");
+		questoes1.put(2, "Qual a capital da Turquia?");
+		questoes1.put(3, "O que comem os três tigres tristes?");
+		questoes1.put(4, "Onde está o Wally?");
+		q1.setQuestoes(questoes1);
 		
-		respostas.put(1, "Amarelo");
-		respostas.put(2, "Ancara");
-		respostas.put(3, "Três pratos de trigo");
-		respostas.put(4, "Boa pergunta");
+		Map<Integer, String> respostas1 = new HashMap<>();
+		respostas1.put(1, "Amarelo");
+		respostas1.put(2, "Ancara");
+		respostas1.put(3, "Três pratos de trigo");
+		respostas1.put(4, "Boa pergunta");
+		q1.setRespostas(respostas1);
 		
-		Questionario q1 = new Questionario(id, titulo, descricao, questoes, respostas, tempoRestante);
-		AppImprimir.relatorio("Q1", q1);
+		QuestionarioController.incluir(q1);
 		
 		Questionario q2 = new Questionario();
-		q2.setId(2L);
 		q2.setTitulo("Questionário 2");
 		q2.setDescricao("Descrição do questionário 2");
 		q2.setTempoLimite(60);
@@ -50,10 +51,10 @@ public class QuestionarioTeste implements CommandLineRunner{
 		respostas2.put(1, "Dolorem ipsum quia dolor sit amet.");
 		respostas2.put(2, "Praesent pharetra, eros id laoreet gravida, ante.");
 		q2.setRespostas(respostas2);
-		AppImprimir.relatorio("Q2", q2);
+		
+		QuestionarioController.incluir(q2);
 		
 		Questionario q3 = new Questionario();
-		q3.setId(3L);
 		q3.setTitulo("Questionário 3");
 		q3.setDescricao("Descrição do questionário 3");
 		q3.setTempoLimite(120);
@@ -67,6 +68,7 @@ public class QuestionarioTeste implements CommandLineRunner{
 		respostas3.put(1, "Dolorem ipsum quia dolor sit amet.");
 		respostas3.put(2, "Praesent pharetra, eros id laoreet gravida, ante.");
 		q3.setRespostas(respostas3);
-		AppImprimir.relatorio("Q3", q3);
+		
+		QuestionarioController.incluir(q3);
 	}
 }

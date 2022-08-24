@@ -69,6 +69,30 @@ public class Curso implements IPrinter{
 		this.titulo = titulo;
 	}
 
+	public Instant getInicio() {
+		return inicio;
+	}
+
+	public void setInicio(Instant inicio) {
+		this.inicio = inicio;
+	}
+
+	public Instant getFim() {
+		return fim;
+	}
+
+	public void setFim(Instant fim) {
+		this.fim = fim;
+	}
+
+	public Responsavel getResponsavel() {
+		return responsavel;
+	}
+
+	public void setResponsavel(Responsavel responsavel) {
+		this.responsavel = responsavel;
+	}
+
 	public Set<Conteudo> getConteudos() {
 		return conteudos;
 	}

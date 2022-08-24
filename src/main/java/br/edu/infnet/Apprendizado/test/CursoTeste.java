@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.Apprendizado.controller.CursoController;
 import br.edu.infnet.Apprendizado.entities.Curso;
 import br.edu.infnet.Apprendizado.entities.Questionario;
 import br.edu.infnet.Apprendizado.entities.Responsavel;
@@ -62,14 +63,12 @@ public class CursoTeste implements CommandLineRunner{
 		
 		Responsavel r1 = new Responsavel(1L, "Fulaninho Rodrigues", "rod@email.com");
 		Curso c1 = new Curso(r1);
-		c1.setId(1L);
 		c1.setTitulo("Curso de Javascript");
 		c1.getConteudos().add(q1);
-		AppImprimir.relatorio("C1", c1);
+		CursoController.incluir(c1);
 		
 		Responsavel r2 = new Responsavel(2L, "Ciclano Fulone", "ciclone@email.com");
 		Curso c2 = new Curso(r2);
-		c2.setId(2L);
 		c2.setTitulo("Linguagem Java com Ecossistema Spring");
 		c2.getConteudos().add(q1);
 		c2.getConteudos().add(v1);
@@ -77,14 +76,13 @@ public class CursoTeste implements CommandLineRunner{
 		c2.getConteudos().add(t2);
 		c2.getConteudos().add(t1);
 		c2.getConteudos().add(t2);
-		AppImprimir.relatorio("C2", c2);
+		CursoController.incluir(c2);
 		
 		Responsavel r3 = new Responsavel(3L, "John Doe", "jnoe@email.com");
 		Curso c3 = new Curso(r3);
-		c3.setId(2L);
 		c3.setTitulo("Docker com Kubernetes");
 		c3.getConteudos().add(v1);
 		c3.getConteudos().add(q1);
-		AppImprimir.relatorio("C3", c3);
+		CursoController.incluir(c3);
 	}
 }
