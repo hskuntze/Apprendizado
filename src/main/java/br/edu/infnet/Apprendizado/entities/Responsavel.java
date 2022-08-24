@@ -2,7 +2,9 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.util.Objects;
 
-public class Responsavel {
+import br.edu.infnet.Apprendizado.interfaces.IPrinter;
+
+public class Responsavel implements IPrinter{
 	private Long id;
 	private String nome;
 	private String email;
@@ -55,6 +57,12 @@ public class Responsavel {
 			return false;
 		Responsavel other = (Responsavel) obj;
 		return Objects.equals(id, other.id);
+	}
+	
+	@Override
+	public void imprimir() {
+		System.out.println("#Responsável");
+		System.out.println(this);
 	}
 
 	@Override

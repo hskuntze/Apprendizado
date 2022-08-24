@@ -42,12 +42,21 @@ public class Tarefa extends Conteudo{
 	}
 	
 	@Override
-	public String imprimir() {
-		return getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getLinkTarefa() + ", " + getDataFinal() + ", " + isEntregue();
+	public void imprimir() {
+		System.out.println(getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getLinkTarefa() + ", " + getDataFinal() + ", " + isEntregue());
 	}
 
 	@Override
 	public String toString() {
-		return "Tarefa: " + imprimir();
+		return "Tarefa entregue=" + entregue + ", dataFinal=" + dataFinal + ", linkTarefa=" + linkTarefa + "; " + super.toString();
+	}
+
+	@Override
+	public void apurar() {
+		System.out.println(getClass().getName());
+		System.out.println(getClass().getInterfaces());
+		System.out.println(getClass().getModifiers());
+		System.out.println("---------------------------");
+		System.out.println(getClass().getPackageName());
 	}
 }

@@ -47,12 +47,19 @@ public class Questionario extends Conteudo{
 	}
 
 	@Override
-	public String imprimir() {
-		return getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getTempoLimite() + ", " + getQuestoes() + ", " + getRespostas();
+	public void imprimir() {
+		System.out.println(getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getTempoLimite() + ", " + getQuestoes() + ", " + getRespostas());
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Questionario: " + imprimir();
+		return "Questionario questoes=" + questoes + ", respostas=" + respostas + ", tempoLimite=" + tempoLimite + "; " + super.toString();
+	}
+
+	@Override
+	public void apurar() {
+		System.out.println(getClass().getName() + "\n");
+		System.out.println(getClass().getInterfaces() + "\n");
+		System.out.println(getClass().getModifiers() + "\n");
 	}
 }

@@ -23,7 +23,7 @@ public class TarefaTeste implements CommandLineRunner{
 		String linkTarefa = "www.github.com/hskuntze/Apprendizado";
 		
 		Tarefa t1 = new Tarefa(id, titulo, descricao, entregue, dataFinal, linkTarefa);
-		System.out.println(t1 +"\n-------------");
+		AppImprimir.relatorio("Mensagemmm", t1);
 		
 		Tarefa t2 = new Tarefa();
 		t2.setId(2L);
@@ -32,8 +32,7 @@ public class TarefaTeste implements CommandLineRunner{
 		t2.setDataFinal(Instant.now().plus(1, ChronoUnit.DAYS));
 		t2.setLinkTarefa("www.github.com/hskuntze/Apprendizado");
 		t2.setEntregue(false);
-		
-		System.out.println(t2 +"\n-------------");
+		AppImprimir.relatorio("Mensagemmm22", t2);
 		
 		Tarefa t3 = new Tarefa();
 		t3.setId(2L);
@@ -42,7 +41,6 @@ public class TarefaTeste implements CommandLineRunner{
 		t3.setDataFinal(Instant.now().plus(2, ChronoUnit.HALF_DAYS));
 		t3.setLinkTarefa("www.github.com/hskuntze/Apprendizado");
 		t3.setEntregue(false);
-		
-		System.out.println(t3 +"\n-------------");
+		AppImprimir.relatorio("Mnsadn", t3);
 	}
 }

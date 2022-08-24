@@ -33,7 +33,7 @@ public class QuestionarioTeste implements CommandLineRunner{
 		respostas.put(4, "Boa pergunta");
 		
 		Questionario q1 = new Questionario(id, titulo, descricao, questoes, respostas, tempoRestante);
-		System.out.println(q1 + "\n---------------");
+		AppImprimir.relatorio("Q1", q1);
 		
 		Questionario q2 = new Questionario();
 		q2.setId(2L);
@@ -54,6 +54,27 @@ public class QuestionarioTeste implements CommandLineRunner{
 		
 		q2.setRespostas(respostas2);
 		
-		System.out.println(q2);
+		AppImprimir.relatorio("Q2", q2);
+		
+		Questionario q3 = new Questionario();
+		q3.setId(3L);
+		q3.setTitulo("Questionário 3");
+		q3.setDescricao("Descrição do questionário 3");
+		q3.setTempoLimite(120);
+		
+		Map<Integer, String> questoes3 = new HashMap<>();
+		questoes3.put(1, "Vivamus sit amet quam vel est congue.");
+		questoes3.put(2, "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.");
+		
+		q3.setQuestoes(questoes3);
+		
+		Map<Integer, String> respostas3 = new HashMap<>();
+		
+		respostas3.put(1, "Dolorem ipsum quia dolor sit amet.");
+		respostas3.put(2, "Praesent pharetra, eros id laoreet gravida, ante.");
+		
+		q3.setRespostas(respostas3);
+		
+		AppImprimir.relatorio("Q3", q3);
 	}
 }

@@ -2,7 +2,9 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.util.Objects;
 
-public abstract class Conteudo {
+import br.edu.infnet.Apprendizado.interfaces.IPrinter;
+
+public abstract class Conteudo implements IPrinter{
 	private Long id;
 	private String titulo;
 	private String descricao;
@@ -40,7 +42,7 @@ public abstract class Conteudo {
 		this.descricao = descricao;
 	}
 	
-	public abstract String imprimir();
+	public abstract void apurar();
 
 	@Override
 	public int hashCode() {
@@ -61,6 +63,6 @@ public abstract class Conteudo {
 
 	@Override
 	public String toString() {
-		return "Conteudo id=" + id + "; " + imprimir();
+		return "Conteudo id=" + id + ", titulo=" + titulo + ", descricao=" + descricao;
 	}
 }

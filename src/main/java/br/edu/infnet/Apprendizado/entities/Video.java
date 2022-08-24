@@ -42,12 +42,18 @@ public class Video extends Conteudo{
 	}
 	
 	@Override
-	public String imprimir() {
-		return getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getVideoUrl() + ", " + getAcessadoEm() + ", " + isFinalizado();
+	public void imprimir() {
+		System.out.println(getId() + ", " + getTitulo() + ", " + getDescricao() + ", " + getVideoUrl() + ", " + getAcessadoEm() + ", " + isFinalizado());
 	}
 
 	@Override
 	public String toString() {
-		return "Video: " + imprimir();
+		return "Video videoUrl=" + videoUrl + ", finalizado=" + finalizado + ", acessadoEm=" + acessadoEm + "; " + super.toString();
+	}
+
+	@Override
+	public void apurar() {
+		System.out.println("Outra implementação");
+		System.out.println(getClass().descriptorString());
 	}
 }

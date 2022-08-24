@@ -4,7 +4,9 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 
-public class Curso {
+import br.edu.infnet.Apprendizado.interfaces.IPrinter;
+
+public class Curso implements IPrinter{
 	private Long id;
 	private String titulo;
 	private Instant inicio;
@@ -97,8 +99,15 @@ public class Curso {
 	}
 
 	@Override
+	public void imprimir() {
+		System.out.println("#Curso");
+		System.out.println(this);
+	}
+
+	@Override
 	public String toString() {
 		return "Curso id=" + id + "; " + titulo + "; " + inicio + "; " + fim + "; "
 				+ responsavel + "; " + conteudos;
 	}
+
 }

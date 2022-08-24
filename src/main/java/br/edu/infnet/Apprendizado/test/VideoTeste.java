@@ -23,7 +23,7 @@ public class VideoTeste implements CommandLineRunner{
 		boolean finalizado = true;
 		
 		Video v1 = new Video(id, titulo, descricao, videoUrl, finalizado, acessadoEm);
-		new AppConteudo("Mensagem mega aleatória").relatorio(v1);
+		AppImprimir.relatorio("Mensagemmm", v1);
 		
 		Video v2 = new Video();
 		v2.setId(2L);
@@ -32,6 +32,7 @@ public class VideoTeste implements CommandLineRunner{
 		v2.setVideoUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 		v2.setAcessadoEm(Instant.now().minus(1, ChronoUnit.HOURS));
 		v2.setFinalizado(true);
+		AppImprimir.relatorio("Mensagemmm2", v2);
 		
 		Video v3 = new Video();
 		v3.setId(3L);
@@ -40,6 +41,6 @@ public class VideoTeste implements CommandLineRunner{
 		v3.setVideoUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 		v3.setAcessadoEm(Instant.now().minus(1, ChronoUnit.HOURS));
 		v3.setFinalizado(true);
-		
+		AppImprimir.relatorio("Mensagemmm3", v3);
 	}
 }
