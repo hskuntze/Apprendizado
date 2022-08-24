@@ -29,31 +29,49 @@
 				<td>1</td>
 				<td>Java 1</td>
 				<td>Aula 1: Programação Orientada a Objetos</td>
+				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
+				<td>Sim</td>
+				<td>14:51:22T22/02/2022Z</td>
 			</tr>
 			<tr>
 				<td>2</td>
 				<td>Java 1</td>
 				<td>Aula 2: Básico do Java</td>
+				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
+				<td>Sim</td>
+				<td>08:11:41T25/02/2022Z</td>
 			</tr>
 			<tr>
 				<td>3</td>
 				<td>Java 1</td>
 				<td>Aula 3: Básico do Java 2</td>
+				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
+				<td>Não</td>
+				<td>-</td>
 			</tr>
 			<tr>
 				<td>4</td>
 				<td>React 1</td>
 				<td>Aula 1: Componentes</td>
+				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
+				<td>Sim</td>
+				<td>15:18:29T23/02/2022Z</td>
 			</tr>
 			<tr>
 				<td>5</td>
 				<td>React 2</td>
 				<td>Aula 2: Rotas</td>
+				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
+				<td>Não</td>
+				<td>-</td>
 			</tr>
 			<tr>
 				<td>6</td>
 				<td>React 3</td>
 				<td>Aula 3: Estado</td>
+				<td><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link</a></td>
+				<td>Não</td>
+				<td>-</td>
 			</tr>
 		</tbody>
 	</table>
