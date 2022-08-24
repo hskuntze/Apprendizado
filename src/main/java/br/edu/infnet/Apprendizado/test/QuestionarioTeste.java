@@ -44,16 +44,12 @@ public class QuestionarioTeste implements CommandLineRunner{
 		Map<Integer, String> questoes2 = new HashMap<>();
 		questoes2.put(1, "Vivamus sit amet quam vel est congue.");
 		questoes2.put(2, "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.");
-		
 		q2.setQuestoes(questoes2);
 		
 		Map<Integer, String> respostas2 = new HashMap<>();
-		
 		respostas2.put(1, "Dolorem ipsum quia dolor sit amet.");
 		respostas2.put(2, "Praesent pharetra, eros id laoreet gravida, ante.");
-		
 		q2.setRespostas(respostas2);
-		
 		AppImprimir.relatorio("Q2", q2);
 		
 		Questionario q3 = new Questionario();
@@ -65,16 +61,12 @@ public class QuestionarioTeste implements CommandLineRunner{
 		Map<Integer, String> questoes3 = new HashMap<>();
 		questoes3.put(1, "Vivamus sit amet quam vel est congue.");
 		questoes3.put(2, "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.");
-		
 		q3.setQuestoes(questoes3);
 		
 		Map<Integer, String> respostas3 = new HashMap<>();
-		
 		respostas3.put(1, "Dolorem ipsum quia dolor sit amet.");
 		respostas3.put(2, "Praesent pharetra, eros id laoreet gravida, ante.");
-		
 		q3.setRespostas(respostas3);
-		
 		AppImprimir.relatorio("Q3", q3);
 	}
 }

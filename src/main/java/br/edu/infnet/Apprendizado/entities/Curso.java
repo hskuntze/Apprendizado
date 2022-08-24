@@ -1,8 +1,10 @@
 package br.edu.infnet.Apprendizado.entities;
 
 import java.time.Instant;
-import java.util.List;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import br.edu.infnet.Apprendizado.interfaces.IPrinter;
 
@@ -16,9 +18,15 @@ public class Curso implements IPrinter{
 	private Responsavel responsavel;
 	
 	//ORM pendente
-	private List<Conteudo> conteudos;
+	private Set<Conteudo> conteudos = new HashSet<>();
 	
 	public Curso() {
+	}
+	
+	public Curso(Responsavel responsavel) {
+		inicio = Instant.now();
+		fim = inicio.plus(60, ChronoUnit.DAYS);
+		this.responsavel = responsavel;
 	}
 
 	public Curso(Long id, String titulo, Instant inicio, Instant fim) {
@@ -27,8 +35,16 @@ public class Curso implements IPrinter{
 		this.inicio = inicio;
 		this.fim = fim;
 	}
+	
+	public Curso(Long id, String titulo, Instant inicio, Instant fim, Responsavel responsavel) {
+		this.id = id;
+		this.titulo = titulo;
+		this.inicio = inicio;
+		this.fim = fim;
+		this.responsavel = responsavel;
+	}
 
-	public Curso(Long id, String titulo, Instant inicio, Instant fim, Responsavel responsavel, List<Conteudo> conteudos) {
+	public Curso(Long id, String titulo, Instant inicio, Instant fim, Responsavel responsavel, Set<Conteudo> conteudos) {
 		this.id = id;
 		this.titulo = titulo;
 		this.inicio = inicio;
@@ -53,31 +69,7 @@ public class Curso implements IPrinter{
 		this.titulo = titulo;
 	}
 
-	public Instant getInicio() {
-		return inicio;
-	}
-
-	public void setInicio(Instant inicio) {
-		this.inicio = inicio;
-	}
-
-	public Instant getFim() {
-		return fim;
-	}
-
-	public void setFim(Instant fim) {
-		this.fim = fim;
-	}
-
-	public Responsavel getResponsavel() {
-		return responsavel;
-	}
-
-	public void setResponsavel(Responsavel responsavel) {
-		this.responsavel = responsavel;
-	}
-
-	public List<Conteudo> getConteudos() {
+	public Set<Conteudo> getConteudos() {
 		return conteudos;
 	}
 
@@ -100,14 +92,12 @@ public class Curso implements IPrinter{
 
 	@Override
 	public void imprimir() {
-		System.out.println("#Curso");
 		System.out.println(this);
 	}
 
 	@Override
 	public String toString() {
 		return "Curso id=" + id + "; " + titulo + "; " + inicio + "; " + fim + "; "
-				+ responsavel + "; " + conteudos;
+				+ responsavel + "; " + conteudos.size();
 	}
-
 }
