@@ -2,6 +2,9 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.util.Objects;
 
+import br.edu.infnet.Apprendizado.exceptions.LinkTarefaInvalidoException;
+import br.edu.infnet.Apprendizado.exceptions.TempoLimiteInvalidoException;
+import br.edu.infnet.Apprendizado.exceptions.VideoUrlInvalidoException;
 import br.edu.infnet.Apprendizado.interfaces.IPrinter;
 
 public abstract class Conteudo implements IPrinter{
@@ -42,7 +45,7 @@ public abstract class Conteudo implements IPrinter{
 		this.descricao = descricao;
 	}
 	
-	public abstract void apurar();
+	public abstract String apurar() throws TempoLimiteInvalidoException, LinkTarefaInvalidoException, VideoUrlInvalidoException;
 
 	@Override
 	public int hashCode() {

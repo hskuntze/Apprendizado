@@ -3,23 +3,27 @@ package br.edu.infnet.Apprendizado.test;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.Apprendizado.controller.QuestionarioController;
 import br.edu.infnet.Apprendizado.entities.Questionario;
+import br.edu.infnet.Apprendizado.exceptions.TempoLimiteInvalidoException;
 
 @Component
 @Order(3)
-public class QuestionarioTeste implements CommandLineRunner{
+public class QuestionarioTeste implements ApplicationRunner{
+
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(ApplicationArguments args) {
 		System.out.println("\n---- Questionário ----");
+		
 		Questionario q1 = new Questionario();
 		q1.setTitulo("Questionário 1");
 		q1.setDescricao("Descrição do questionário 1");
-		q1.setTempoLimite(30);
+		q1.setTempoLimite(10);
 		
 		Map<Integer, String> questoes1 = new HashMap<>();
 		questoes1.put(1, "Qual a cor do cavalo branco de Napoleão?");
@@ -35,7 +39,12 @@ public class QuestionarioTeste implements CommandLineRunner{
 		respostas1.put(4, "Boa pergunta");
 		q1.setRespostas(respostas1);
 		
-		QuestionarioController.incluir(q1);
+		try {
+			QuestionarioController.incluir(q1);
+			System.out.println(q1.apurar() + "\n");
+		} catch (TempoLimiteInvalidoException e) {
+			System.out.println(e.getMessage());
+		}
 		
 		Questionario q2 = new Questionario();
 		q2.setTitulo("Questionário 2");
@@ -52,7 +61,12 @@ public class QuestionarioTeste implements CommandLineRunner{
 		respostas2.put(2, "Praesent pharetra, eros id laoreet gravida, ante.");
 		q2.setRespostas(respostas2);
 		
-		QuestionarioController.incluir(q2);
+		try {
+			QuestionarioController.incluir(q2);
+			System.out.println(q2.apurar() + "\n");
+		} catch (TempoLimiteInvalidoException e) {
+			System.out.println(e.getMessage());
+		}
 		
 		Questionario q3 = new Questionario();
 		q3.setTitulo("Questionário 3");
@@ -69,6 +83,11 @@ public class QuestionarioTeste implements CommandLineRunner{
 		respostas3.put(2, "Praesent pharetra, eros id laoreet gravida, ante.");
 		q3.setRespostas(respostas3);
 		
-		QuestionarioController.incluir(q3);
+		try {
+			QuestionarioController.incluir(q3);
+			System.out.println(q3.apurar() + "\n");
+		} catch (TempoLimiteInvalidoException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

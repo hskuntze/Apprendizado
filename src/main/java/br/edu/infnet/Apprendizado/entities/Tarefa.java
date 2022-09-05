@@ -2,6 +2,8 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.time.Instant;
 
+import br.edu.infnet.Apprendizado.exceptions.LinkTarefaInvalidoException;
+
 public class Tarefa extends Conteudo{
 	private boolean entregue;
 	private Instant dataFinal;
@@ -52,11 +54,10 @@ public class Tarefa extends Conteudo{
 	}
 
 	@Override
-	public void apurar() {
-		System.out.println(getClass().getName());
-		System.out.println(getClass().getInterfaces());
-		System.out.println(getClass().getModifiers());
-		System.out.println("---------------------------");
-		System.out.println(getClass().getPackageName());
+	public String apurar() throws LinkTarefaInvalidoException {
+		if(getLinkTarefa() == null || getLinkTarefa().isBlank()) {
+			throw new LinkTarefaInvalidoException("Link da tarefa não pode estar em branco.");
+		}
+		return getClass().getName() + " " + getId() + ", " + getLinkTarefa();
 	}
 }

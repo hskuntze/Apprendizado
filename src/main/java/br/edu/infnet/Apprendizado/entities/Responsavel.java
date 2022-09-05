@@ -2,6 +2,7 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.util.Objects;
 
+import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
 import br.edu.infnet.Apprendizado.interfaces.IPrinter;
 
 public class Responsavel implements IPrinter{
@@ -12,8 +13,11 @@ public class Responsavel implements IPrinter{
 	public Responsavel() {
 	}
 
-	public Responsavel(Long id, String nome, String email) {
-		this.id = id;
+	public Responsavel(String nome, String email) throws ResponsavelInvalidoException{
+		if((nome == null || nome.isBlank()) || (email == null || email.isBlank())) {
+			throw new ResponsavelInvalidoException("Não é possível registrar um responsável com nome e/ou email vazios.");
+		}
+		
 		this.nome = nome;
 		this.email = email;
 	}

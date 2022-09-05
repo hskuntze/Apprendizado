@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import br.edu.infnet.Apprendizado.exceptions.ConteudoInvalidoException;
+import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
 import br.edu.infnet.Apprendizado.interfaces.IPrinter;
 
 public class Curso implements IPrinter{
@@ -49,6 +51,17 @@ public class Curso implements IPrinter{
 		this.titulo = titulo;
 		this.inicio = inicio;
 		this.fim = fim;
+		this.responsavel = responsavel;
+		this.conteudos = conteudos;
+	}
+	
+	public Curso(Responsavel responsavel, Set<Conteudo> conteudos) throws ResponsavelInvalidoException, ConteudoInvalidoException {
+		if(responsavel == null) {
+			throw new ResponsavelInvalidoException("Responsável com dados inválidos.");
+		}
+		if(conteudos == null || conteudos.size() <= 0) {
+			throw new ConteudoInvalidoException("Conteúdo está inválido.");
+		}
 		this.responsavel = responsavel;
 		this.conteudos = conteudos;
 	}

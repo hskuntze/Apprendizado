@@ -2,6 +2,8 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.util.Map;
 
+import br.edu.infnet.Apprendizado.exceptions.TempoLimiteInvalidoException;
+
 public class Questionario extends Conteudo{
 	private Map<Integer, String> questoes;
 	private Map<Integer, String> respostas;
@@ -57,9 +59,10 @@ public class Questionario extends Conteudo{
 	}
 
 	@Override
-	public void apurar() {
-		System.out.println(getClass().getName() + "\n");
-		System.out.println(getClass().getInterfaces() + "\n");
-		System.out.println(getClass().getModifiers() + "\n");
+	public String apurar() throws TempoLimiteInvalidoException {
+		if(tempoLimite <= 30) {
+			throw new TempoLimiteInvalidoException("Tempo limite mínimo de 30 minutos.");
+		}
+		return this.getClass().getSimpleName() + " " + this.getId() + ", " + this.getTempoLimite() + " minutos.";
 	}
 }

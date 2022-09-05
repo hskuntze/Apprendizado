@@ -2,7 +2,9 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.time.Instant;
 
-public class Video extends Conteudo{
+import br.edu.infnet.Apprendizado.exceptions.VideoUrlInvalidoException;
+
+public class Video extends Conteudo {
 	private String videoUrl;
 	private boolean finalizado;
 	private Instant acessadoEm;
@@ -52,8 +54,10 @@ public class Video extends Conteudo{
 	}
 
 	@Override
-	public void apurar() {
-		System.out.println("Outra implementação");
-		System.out.println(getClass().descriptorString());
+	public String apurar() throws VideoUrlInvalidoException {
+		if(getVideoUrl() == null || getVideoUrl().isBlank()) {
+			throw new VideoUrlInvalidoException("Link do vídeo não pode estar em branco.");
+		}
+		return getClass().getSimpleName() + " " + getId() + ", link do vídeo: " + getVideoUrl();
 	}
 }

@@ -3,24 +3,30 @@ package br.edu.infnet.Apprendizado.test;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.Apprendizado.controller.CursoController;
+import br.edu.infnet.Apprendizado.entities.Conteudo;
 import br.edu.infnet.Apprendizado.entities.Curso;
 import br.edu.infnet.Apprendizado.entities.Questionario;
 import br.edu.infnet.Apprendizado.entities.Responsavel;
 import br.edu.infnet.Apprendizado.entities.Tarefa;
 import br.edu.infnet.Apprendizado.entities.Video;
+import br.edu.infnet.Apprendizado.exceptions.ConteudoInvalidoException;
+import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
 
 @Component
-public class CursoTeste implements CommandLineRunner{
+public class CursoTeste implements ApplicationRunner{
+
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(ApplicationArguments args) {
 		Questionario q1 = new Questionario();
-		q1.setId(1L);
 		q1.setTitulo("Questionário 1");
 		q1.setDescricao("Descrição do questionário 1");
 		q1.setTempoLimite(60);
@@ -36,7 +42,6 @@ public class CursoTeste implements CommandLineRunner{
 		q1.setRespostas(respostas1);
 		
 		Tarefa t1 = new Tarefa();
-		t1.setId(1L);
 		t1.setTitulo("Tarefa 1");
 		t1.setDescricao("Descrição da Tarefa 1");
 		t1.setDataFinal(Instant.now().plus(10, ChronoUnit.DAYS));
@@ -44,7 +49,6 @@ public class CursoTeste implements CommandLineRunner{
 		t1.setEntregue(false);
 		
 		Tarefa t2 = new Tarefa();
-		t2.setId(2L);
 		t2.setTitulo("Tarefa 1");
 		t2.setDescricao("Descrição da Tarefa 1");
 		t2.setDataFinal(Instant.now().plus(10, ChronoUnit.DAYS));
@@ -52,37 +56,54 @@ public class CursoTeste implements CommandLineRunner{
 		t2.setEntregue(false);
 		
 		Video v1 = new Video();
-		v1.setId(1L);
 		v1.setTitulo("Vídeo 1");
 		v1.setDescricao("Descrição do Vídeo 1");
 		v1.setVideoUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 		v1.setAcessadoEm(Instant.now().minus(1, ChronoUnit.HOURS));
 		v1.setFinalizado(true);
 		
+		Set<Conteudo> conteudos1 = new HashSet<Conteudo>();
+		conteudos1.add(v1);
+		conteudos1.add(t2);
+		conteudos1.add(t1);
+		
+		Set<Conteudo> conteudos2 = new HashSet<Conteudo>();
+		
+		Set<Conteudo> conteudos3 = new HashSet<Conteudo>();
+		conteudos3.add(t2);
+		conteudos3.add(t1);
+		conteudos3.add(v1);
+		conteudos3.add(q1);
+		
 		System.out.println("\n---- Curso ----");
 		
-		Responsavel r1 = new Responsavel(1L, "Fulaninho Rodrigues", "rod@email.com");
-		Curso c1 = new Curso(r1);
-		c1.setTitulo("Curso de Javascript");
-		c1.getConteudos().add(q1);
-		CursoController.incluir(c1);
+		try {
+			Responsavel r1 = new Responsavel("Fulaninho Rodrigues", "rod@email.com");
+			Curso c1 = new Curso(r1, conteudos1);
+			c1.setTitulo("Curso de Javascript");
+			CursoController.incluir(c1);
+		} catch (ResponsavelInvalidoException e) {
+			System.out.println("[ERROR - CURSO] " + e.getMessage());
+		} catch (ConteudoInvalidoException e) {
+			System.out.println("[ERROR - CURSO] " + e.getMessage());
+		}
 		
-		Responsavel r2 = new Responsavel(2L, "Ciclano Fulone", "ciclone@email.com");
-		Curso c2 = new Curso(r2);
-		c2.setTitulo("Linguagem Java com Ecossistema Spring");
-		c2.getConteudos().add(q1);
-		c2.getConteudos().add(v1);
-		c2.getConteudos().add(t1);
-		c2.getConteudos().add(t2);
-		c2.getConteudos().add(t1);
-		c2.getConteudos().add(t2);
-		CursoController.incluir(c2);
+		try {
+			Responsavel r2 = new Responsavel("Ciclano Fulone", "ciclone@email.com");
+			Curso c2 = new Curso(r2, conteudos2);
+			c2.setTitulo("Linguagem Java com Ecossistema Spring");
+			CursoController.incluir(c2);
+		} catch (ResponsavelInvalidoException | ConteudoInvalidoException e) {
+			System.out.println("[ERROR - CURSO] " + e.getMessage());
+		}
 		
-		Responsavel r3 = new Responsavel(3L, "John Doe", "jnoe@email.com");
-		Curso c3 = new Curso(r3);
-		c3.setTitulo("Docker com Kubernetes");
-		c3.getConteudos().add(v1);
-		c3.getConteudos().add(q1);
-		CursoController.incluir(c3);
+		try {
+			Responsavel r3 = new Responsavel("", "jnoe@email.com");
+			Curso c3 = new Curso(r3, conteudos3);
+			c3.setTitulo("Docker com Kubernetes");
+			CursoController.incluir(c3);
+		} catch (ResponsavelInvalidoException | ConteudoInvalidoException e) {
+			System.out.println("[ERROR - CURSO] " + e.getMessage());
+		}
 	}
 }
