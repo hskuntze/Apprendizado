@@ -31,31 +31,34 @@ public class Curso implements IPrinter{
 		this.responsavel = responsavel;
 	}
 
-	public Curso(Long id, String titulo, Instant inicio, Instant fim) {
+	public Curso(Long id, String titulo) {
 		this.id = id;
 		this.titulo = titulo;
-		this.inicio = inicio;
-		this.fim = fim;
+		inicio = Instant.now();
+		fim = inicio.plus(60, ChronoUnit.DAYS);
 	}
 	
-	public Curso(Long id, String titulo, Instant inicio, Instant fim, Responsavel responsavel) {
+	public Curso(Long id, String titulo, Responsavel responsavel) {
 		this.id = id;
 		this.titulo = titulo;
-		this.inicio = inicio;
-		this.fim = fim;
+		inicio = Instant.now();
+		fim = inicio.plus(60, ChronoUnit.DAYS);
 		this.responsavel = responsavel;
 	}
 
-	public Curso(Long id, String titulo, Instant inicio, Instant fim, Responsavel responsavel, Set<Conteudo> conteudos) {
+	public Curso(Long id, String titulo, Responsavel responsavel, Set<Conteudo> conteudos) {
 		this.id = id;
 		this.titulo = titulo;
-		this.inicio = inicio;
-		this.fim = fim;
+		inicio = Instant.now();
+		fim = inicio.plus(60, ChronoUnit.DAYS);
 		this.responsavel = responsavel;
 		this.conteudos = conteudos;
 	}
 	
 	public Curso(Responsavel responsavel, Set<Conteudo> conteudos) throws ResponsavelInvalidoException, ConteudoInvalidoException {
+		inicio = Instant.now();
+		fim = inicio.plus(60, ChronoUnit.DAYS);
+		
 		if(responsavel == null) {
 			throw new ResponsavelInvalidoException("Responsável com dados inválidos.");
 		}

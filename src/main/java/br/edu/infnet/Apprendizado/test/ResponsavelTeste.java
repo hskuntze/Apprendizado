@@ -1,5 +1,10 @@
 package br.edu.infnet.Apprendizado.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -14,24 +19,27 @@ public class ResponsavelTeste implements ApplicationRunner{
 	public void run(ApplicationArguments args) {
 		System.out.println("\n---- Responsável ----");
 		
-		try {
-			Responsavel r1 = new Responsavel("Ciclano Fulone", "ciclone@email.com");
-			ResponsavelController.incluir(r1);
-		} catch (ResponsavelInvalidoException e) {
-			System.out.println(e.getMessage());
-		}
+		String dir = "D:/hskun/Documents/";
+		String file = "responsaveis.txt";
 		
-		try {
-			Responsavel r2 = new Responsavel("", "arreni@email.com");
-			ResponsavelController.incluir(r2);
-		} catch (ResponsavelInvalidoException e) {
+		try (BufferedReader br = new BufferedReader(new FileReader(dir+file))) {
+			String line = br.readLine();
+			while(line != null) {
+				try {
+					String[] fields = line.split(";");
+					
+					Responsavel r = new Responsavel(fields[0], fields[1]);
+					
+					ResponsavelController.incluir(r);
+				} catch (ResponsavelInvalidoException e) {
+					System.out.println("[ERROR - CURSO] " + e.getMessage());
+				}
+				line = br.readLine();
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
-		}
-		
-		try {
-			Responsavel r3 = new Responsavel("John Doe", "jnoe@email.com");
-			ResponsavelController.incluir(r3);
-		} catch (ResponsavelInvalidoException e) {
+		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 	}

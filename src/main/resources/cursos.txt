@@ -1,0 +1,3 @@
+Curso de Java;Rodrigo Faro;rod@email.com
+Curso de PHP;William Bonner;bonner@email.com
+Curso de Go;Luisa Sonsa;sonsa@email.com

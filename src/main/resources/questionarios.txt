@@ -1,0 +1,2 @@
+Brasil;Questões sobre o território nacional;60;1=Quantos estados tem o Brasil?,2=Quantas pessoas moram no Brasil?;1=26 além do DF,2=Cerca de 220 milhões
+Matemática;Questões sobre matemática;30;1=Quanto é 1+1-1+2-1?,2=Raíz cúbica de 8?;1=3,2=2

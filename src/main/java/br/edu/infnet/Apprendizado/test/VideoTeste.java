@@ -1,7 +1,10 @@
 package br.edu.infnet.Apprendizado.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -18,45 +21,28 @@ public class VideoTeste implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) {
 		System.out.println("\n---- Vídeo ----");
-		Video v1 = new Video();
-		v1.setTitulo("Vídeo 1");
-		v1.setDescricao("Descrição do Vídeo 1");
-		v1.setVideoUrl("https://www.youtube.com/watch?v=8YaOWBvx_Ms");
-		v1.setAcessadoEm(Instant.now().minus(1, ChronoUnit.HOURS));
-		v1.setFinalizado(true);
-		
-		try {
-			System.out.println(v1.apurar());
-			VideoController.incluir(v1);
-		} catch (Exception e) {
+		String dir = "D:/hskun/Documents/";
+		String file = "videos.txt";
+
+		try (BufferedReader br = new BufferedReader(new FileReader(dir + file))) {
+			String line = br.readLine();
+			while (line != null) {
+				String[] fields = line.split(";");
+
+				Video v = new Video();
+				v.setTitulo(fields[0]);
+				v.setDescricao(fields[1]);
+				v.setVideoUrl(fields[2]);
+				v.setFinalizado(Boolean.valueOf(fields[3]));
+				v.setAcessadoEm(Instant.parse(fields[4]));
+				
+				VideoController.incluir(v);
+				line = br.readLine();
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
-		}
-		
-		Video v2 = new Video();
-		v2.setTitulo("Vídeo 2");
-		v2.setDescricao("Descrição do Vídeo 2");
-		v2.setVideoUrl("");
-		v2.setAcessadoEm(Instant.now().minus(62, ChronoUnit.HOURS));
-		v2.setFinalizado(true);
-		
-		try {
-			System.out.println(v2.apurar());
-			VideoController.incluir(v2);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		Video v3 = new Video();
-		v3.setTitulo("Vídeo 3");
-		v3.setDescricao("Descrição do Vídeo 3");
-		v3.setVideoUrl(null);
-		v3.setAcessadoEm(Instant.now().minus(41, ChronoUnit.HOURS));
-		v3.setFinalizado(true);
-		
-		try {
-			System.out.println(v3.apurar());
-			VideoController.incluir(v3);
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 	}

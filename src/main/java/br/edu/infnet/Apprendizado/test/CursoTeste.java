@@ -1,5 +1,9 @@
 package br.edu.infnet.Apprendizado.test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -63,47 +67,42 @@ public class CursoTeste implements ApplicationRunner{
 		v1.setFinalizado(true);
 		
 		Set<Conteudo> conteudos1 = new HashSet<Conteudo>();
-		conteudos1.add(v1);
 		conteudos1.add(t2);
 		conteudos1.add(t1);
-		
-		Set<Conteudo> conteudos2 = new HashSet<Conteudo>();
-		
-		Set<Conteudo> conteudos3 = new HashSet<Conteudo>();
-		conteudos3.add(t2);
-		conteudos3.add(t1);
-		conteudos3.add(v1);
-		conteudos3.add(q1);
+		conteudos1.add(v1);
+		conteudos1.add(q1);
 		
 		System.out.println("\n---- Curso ----");
 		
-		try {
-			Responsavel r1 = new Responsavel("Fulaninho Rodrigues", "rod@email.com");
-			Curso c1 = new Curso(r1, conteudos1);
-			c1.setTitulo("Curso de Javascript");
-			CursoController.incluir(c1);
-		} catch (ResponsavelInvalidoException e) {
-			System.out.println("[ERROR - CURSO] " + e.getMessage());
-		} catch (ConteudoInvalidoException e) {
-			System.out.println("[ERROR - CURSO] " + e.getMessage());
-		}
+		String dir = "D:/hskun/Documents/";
+		String file = "cursos.txt";
 		
-		try {
-			Responsavel r2 = new Responsavel("Ciclano Fulone", "ciclone@email.com");
-			Curso c2 = new Curso(r2, conteudos2);
-			c2.setTitulo("Linguagem Java com Ecossistema Spring");
-			CursoController.incluir(c2);
-		} catch (ResponsavelInvalidoException | ConteudoInvalidoException e) {
-			System.out.println("[ERROR - CURSO] " + e.getMessage());
-		}
-		
-		try {
-			Responsavel r3 = new Responsavel("", "jnoe@email.com");
-			Curso c3 = new Curso(r3, conteudos3);
-			c3.setTitulo("Docker com Kubernetes");
-			CursoController.incluir(c3);
-		} catch (ResponsavelInvalidoException | ConteudoInvalidoException e) {
-			System.out.println("[ERROR - CURSO] " + e.getMessage());
+		try (BufferedReader br = new BufferedReader(new FileReader(dir+file))) {
+			String line = br.readLine();
+			while(line != null) {
+				try {
+					String[] fields = line.split(";");
+					
+					Responsavel r1 = new Responsavel(fields[1], fields[2]);
+					
+					Curso c1 = new Curso(r1, conteudos1);
+					c1.setTitulo(fields[0]);
+					
+					CursoController.incluir(c1);
+				} catch (ResponsavelInvalidoException e) {
+					System.out.println("[ERROR - CURSO] " + e.getMessage());
+				} catch (ConteudoInvalidoException e) {
+					System.out.println("[ERROR - CURSO] " + e.getMessage());
+				}
+				
+				System.out.println(line);
+				line = br.readLine();
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 }
