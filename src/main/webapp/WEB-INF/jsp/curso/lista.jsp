@@ -13,6 +13,7 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<c:import url="/WEB-INF/jsp/menu.jsp"></c:import>
 	<h4 class="mt-3">Classe: Curso</h4>
 	<table class="table table-hover table-striped">
 		<thead>

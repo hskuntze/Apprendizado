@@ -5,16 +5,21 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.Apprendizado.controller.ResponsavelController;
 import br.edu.infnet.Apprendizado.entities.Responsavel;
 import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
+import br.edu.infnet.Apprendizado.services.ResponsavelService;
 
 @Component
 public class ResponsavelTeste implements ApplicationRunner{
+	
+	@Autowired
+	private ResponsavelService service;
+	
 	@Override
 	public void run(ApplicationArguments args) {
 		System.out.println("\n---- Responsável ----");
@@ -30,7 +35,7 @@ public class ResponsavelTeste implements ApplicationRunner{
 					
 					Responsavel r = new Responsavel(fields[0], fields[1]);
 					
-					ResponsavelController.incluir(r);
+					service.incluir(r);
 				} catch (ResponsavelInvalidoException e) {
 					System.out.println("[ERROR - CURSO] " + e.getMessage());
 				}

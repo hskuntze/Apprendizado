@@ -6,17 +6,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.Instant;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.Apprendizado.controller.VideoController;
 import br.edu.infnet.Apprendizado.entities.Video;
+import br.edu.infnet.Apprendizado.services.VideoService;
 
 @Component
 @Order(1)
 public class VideoTeste implements ApplicationRunner{
+	
+	@Autowired
+	private VideoService service;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -36,7 +40,7 @@ public class VideoTeste implements ApplicationRunner{
 				v.setFinalizado(Boolean.valueOf(fields[3]));
 				v.setAcessadoEm(Instant.parse(fields[4]));
 				
-				VideoController.incluir(v);
+				service.incluir(v);
 				line = br.readLine();
 			}
 			br.close();

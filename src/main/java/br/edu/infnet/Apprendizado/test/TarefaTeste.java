@@ -6,17 +6,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.Instant;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.Apprendizado.controller.TarefaController;
 import br.edu.infnet.Apprendizado.entities.Tarefa;
+import br.edu.infnet.Apprendizado.services.TarefaService;
 
 @Component
 @Order(2)
 public class TarefaTeste implements ApplicationRunner {
+	
+	@Autowired
+	private TarefaService service;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -36,7 +40,7 @@ public class TarefaTeste implements ApplicationRunner {
 				t.setDataFinal(Instant.parse(fields[3]));
 				t.setLinkTarefa(fields[4]);
 
-				TarefaController.incluir(t);
+				service.incluir(t);
 				line = br.readLine();
 			}
 			br.close();

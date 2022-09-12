@@ -7,17 +7,21 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.Apprendizado.controller.QuestionarioController;
 import br.edu.infnet.Apprendizado.entities.Questionario;
+import br.edu.infnet.Apprendizado.services.QuestionarioService;
 
 @Component
 @Order(3)
 public class QuestionarioTeste implements ApplicationRunner{
+	
+	@Autowired
+	private QuestionarioService service;
 
 	@Override
 	public void run(ApplicationArguments args) {
@@ -52,7 +56,7 @@ public class QuestionarioTeste implements ApplicationRunner{
  				q1.setQuestoes(questoes);
  				q1.setRespostas(respostas);
  				
- 				QuestionarioController.incluir(q1);
+ 				service.incluir(q1);
 				
 				line = br.readLine();
 			}

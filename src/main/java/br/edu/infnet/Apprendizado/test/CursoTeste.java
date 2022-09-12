@@ -11,11 +11,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.Apprendizado.controller.CursoController;
 import br.edu.infnet.Apprendizado.entities.Conteudo;
 import br.edu.infnet.Apprendizado.entities.Curso;
 import br.edu.infnet.Apprendizado.entities.Questionario;
@@ -24,10 +24,14 @@ import br.edu.infnet.Apprendizado.entities.Tarefa;
 import br.edu.infnet.Apprendizado.entities.Video;
 import br.edu.infnet.Apprendizado.exceptions.ConteudoInvalidoException;
 import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
+import br.edu.infnet.Apprendizado.services.CursoService;
 
 @Component
 public class CursoTeste implements ApplicationRunner{
 
+	@Autowired
+	private CursoService service;
+	
 	@Override
 	public void run(ApplicationArguments args) {
 		Questionario q1 = new Questionario();
@@ -88,7 +92,7 @@ public class CursoTeste implements ApplicationRunner{
 					Curso c1 = new Curso(r1, conteudos1);
 					c1.setTitulo(fields[0]);
 					
-					CursoController.incluir(c1);
+					service.incluir(c1);
 				} catch (ResponsavelInvalidoException e) {
 					System.out.println("[ERROR - CURSO] " + e.getMessage());
 				} catch (ConteudoInvalidoException e) {
