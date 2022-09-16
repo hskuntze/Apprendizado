@@ -14,32 +14,35 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"></c:import>
-	<h4 class="mt-3">Classe: Tarefa</h4>
-	<table class="table table-hover table-striped">
-		<thead>
-			<tr>
-				<th scope="col">ID</th>
-				<th scope="col">Título</th>
-				<th scope="col">Descrição</th>
-				<th scope="col">Entregue</th>
-				<th scope="col">Data Final</th>
-				<th scope="col">Link da Tarefa</th>
-				<th scope="col">#</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="b" items="${listagemTarefas}">
+	<div class="container mt-3">
+		<h4 class="mt-3">Classe: Tarefa</h4>
+		<a href="/tarefas/cadastro"><button class="btn btn-outline-secondary my-3">Cadastrar</button></a>
+		<table class="table table-hover table-striped">
+			<thead>
 				<tr>
-					<td>${b.id}</td>
-					<td>${b.titulo}</td>
-					<td>${b.descricao}</td>
-					<td>${b.entregue}</td>
-					<td>${b.dataFinal}</td>
-					<td>${b.linkTarefa}</td>
-					<td><a href="/tarefas/${b.id}/excluir">Excluir</a></td>
+					<th scope="col">ID</th>
+					<th scope="col">Título</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">Entregue</th>
+					<th scope="col">Data Final</th>
+					<th scope="col">Link da Tarefa</th>
+					<th scope="col">#</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach var="b" items="${listagemTarefas}">
+					<tr>
+						<td>${b.id}</td>
+						<td>${b.titulo}</td>
+						<td>${b.descricao}</td>
+						<td>${b.entregue}</td>
+						<td>${b.dataFinal}</td>
+						<td>${b.linkTarefa}</td>
+						<td><a href="/tarefas/${b.id}/excluir">Excluir</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

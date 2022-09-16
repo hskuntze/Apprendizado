@@ -1,5 +1,7 @@
 package br.edu.infnet.Apprendizado.services;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ public class TarefaService {
 	
 	public void incluir(Tarefa tarefa) {
 		tarefa.setId(id++);
+		tarefa.setDataFinal(Instant.now().plus(14, ChronoUnit.DAYS));
 		tarefasMap.put(tarefa.getId(), tarefa);
 		AppImprimir.relatorio(tarefa.getTitulo(), tarefa);
 	}

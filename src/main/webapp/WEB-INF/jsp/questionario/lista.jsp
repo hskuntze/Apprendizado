@@ -14,40 +14,43 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"></c:import>
-	<h4 class="mt-3">Classe: Questionário</h4>
-	<table class="table table-hover table-striped">
-		<thead>
-			<tr>
-				<th scope="col">ID</th>
-				<th scope="col">Título</th>
-				<th scope="col">Descrição</th>
-				<th scope="col">Questões</th>
-				<th scope="col">Respostas</th>
-				<th scope="col">Tempo Limite</th>
-				<th scope="col">#</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="b" items="${listagemQuestionarios}">
+	<div class="container mt-3">
+		<h4 class="mt-3">Classe: Questionário</h4>
+		<a href="/questionarios/cadastro"><button class="btn btn-outline-secondary my-3">Cadastrar</button></a>
+		<table class="table table-hover table-striped">
+			<thead>
 				<tr>
-					<td>${b.id}</td>
-					<td>${b.titulo}</td>
-					<td>${b.descricao}</td>
-					<td>
-						<ul class="list-group">
-							<li class="list-group-item">${b.questoes}</li>
-						</ul>
-					</td>
-					<td>
-						<ul class="list-group">
-							<li class="list-group-item">${b.respostas}</li>
-						</ul>
-					</td>
-					<td>${b.tempoLimite}</td>
-					<td><a href="/questionarios/${b.id}/excluir">Excluir</a></td>
+					<th scope="col">ID</th>
+					<th scope="col">Título</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">Questões</th>
+					<th scope="col">Respostas</th>
+					<th scope="col">Tempo Limite</th>
+					<th scope="col">#</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach var="b" items="${listagemQuestionarios}">
+					<tr>
+						<td>${b.id}</td>
+						<td>${b.titulo}</td>
+						<td>${b.descricao}</td>
+						<td>
+							<ul class="list-group">
+								<li class="list-group-item">${b.questoes}</li>
+							</ul>
+						</td>
+						<td>
+							<ul class="list-group">
+								<li class="list-group-item">${b.respostas}</li>
+							</ul>
+						</td>
+						<td>${b.tempoLimite}</td>
+						<td><a href="/questionarios/${b.id}/excluir">Excluir</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

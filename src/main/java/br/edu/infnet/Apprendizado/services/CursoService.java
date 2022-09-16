@@ -1,5 +1,7 @@
 package br.edu.infnet.Apprendizado.services;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,8 @@ public class CursoService {
 	
 	public void incluir(Curso curso) {
 		curso.setId(id++);
+		curso.setInicio(Instant.now());
+		curso.setFim(curso.getInicio().plus(30, ChronoUnit.DAYS));
 		cursoMap.put(curso.getId(), curso);
 		AppImprimir.relatorio(curso.getTitulo(), curso);
 	}

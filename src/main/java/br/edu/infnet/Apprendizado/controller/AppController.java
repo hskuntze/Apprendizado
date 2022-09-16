@@ -44,7 +44,6 @@ public class AppController {
 			model.addAttribute("user", usuario.getNome());
 			return "home";
 		}
-		
 		return "error";
 	}
 	

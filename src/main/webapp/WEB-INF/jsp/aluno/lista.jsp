@@ -14,26 +14,28 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"></c:import>
-	<h4>Cadastro de Usuários</h4>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Nome</th>
-				<th>E-mail</th>
-				<th>Senha</th>
-				<th>#</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="u" items="${listagem}">
+	<div class="container mt-3">
+		<h4>Cadastro de Usuários</h4>
+		<table class="table table-striped">
+			<thead>
 				<tr>
-					<td>${u.nome}</td>
-					<td>${u.email}</td>
-					<td>${u.senha}</td>
-					<td><a href="/usuarios/${u.email}/excluir">Excluir</a></td>
+					<th>Nome</th>
+					<th>E-mail</th>
+					<th>Senha</th>
+					<th>#</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach var="u" items="${listagem}">
+					<tr>
+						<td>${u.nome}</td>
+						<td>${u.email}</td>
+						<td>${u.senha}</td>
+						<td><a href="/usuarios/${u.email}/excluir">Excluir</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

@@ -14,32 +14,35 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"></c:import>
-	<h4 class="mt-3">Classe: Vídeo</h4>
-	<table class="table table-hover table-striped">
-		<thead>
-			<tr>
-				<th scope="col">ID</th>
-				<th scope="col">Título</th>
-				<th scope="col">Descrição</th>
-				<th scope="col">URL do vídeo</th>
-				<th scope="col">Finalizado</th>
-				<th scope="col">Acessado em</th>
-				<th scope="col">#</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="b" items="${listagemVideos}">
+	<div class="container mt-3">
+		<h4 class="mt-3">Classe: Vídeo</h4>
+		<a href="/videos/cadastro"><button class="btn btn-outline-secondary my-3">Cadastrar</button></a>
+		<table class="table table-hover table-striped">
+			<thead>
 				<tr>
-					<td>${b.id}</td>
-					<td>${b.titulo}</td>
-					<td>${b.descricao}</td>
-					<td><a href="${b.videoUrl}">Link</a></td>
-					<td>${b.finalizado}</td>
-					<td>${b.acessadoEm}</td>
-					<td><a href="/videos/${b.id}/excluir">Excluir</a></td>
+					<th scope="col">ID</th>
+					<th scope="col">Título</th>
+					<th scope="col">Descrição</th>
+					<th scope="col">URL do vídeo</th>
+					<th scope="col">Finalizado</th>
+					<th scope="col">Acessado em</th>
+					<th scope="col">#</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach var="b" items="${listagemVideos}">
+					<tr>
+						<td>${b.id}</td>
+						<td>${b.titulo}</td>
+						<td>${b.descricao}</td>
+						<td><a href="${b.videoUrl}">Link</a></td>
+						<td>${b.finalizado}</td>
+						<td>${b.acessadoEm}</td>
+						<td><a href="/videos/${b.id}/excluir">Excluir</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

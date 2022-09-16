@@ -1,0 +1,31 @@
+P;Apprendizado;Projeto de Gestão de Cursos
+C;Aluno
+A;Id;Long;Número identificador do aluno/usuário
+A;Email;String;Email do aluno/usuário
+A;Nome;String;Nome do aluno/usuário
+A;Senha;String;Senha do aluno/usuário
+C;Curso
+A;Id;Long;Número identificador do curso
+A;Titulo;String;Título do curso
+A;Inicio;Instant;Data de início do curso
+A;Fim;Instant;Data de finalização do curso
+C;Responsavel
+A;Id;Long;Número identificador do responsavel
+A;Email;String;Email do responsavel
+A;Nome;String;Nome do responsavel
+C;Conteudo
+A;Id;Long;Número identificador do conteudo
+A;Titulo;String;Título do conteudo
+A;Descricao;String;Descrição do conteudo
+C;Tarefa
+A;Entregue;Boolean;Indica se a tarefa foi ou não entregue
+A;LinkTarefa;String;Link do repositório onde a tarefa foi armazenada
+A;DataFinal;Instant;Data final para a entrega da tarefa em questão
+C;Video
+A;VideoUrl;String;Link do vídeo para que a aplicação possa exibi-lo através da tag "embed"
+A;Finalizado;Boolean;Indica se o vídeo foi ou não finalizado.
+A;AcessadoEm;Instant;Indica a data do último acesso do usuário ao vídeo em questão
+C;Questionario
+A;Questoes;Map;Cada questão é mapeada por um número. Este número não representa o número da questão na prova
+A;Respostas;Map;Cada resposta é mapeada por um número que representa o número da questão na prova
+A;TempoLimite;Integer;Tempo limite, em minutos, para finalizar o questionário a partir do momento em que se inicia o mesmo
