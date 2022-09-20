@@ -1,5 +1,6 @@
 package br.edu.infnet.Apprendizado.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import br.edu.infnet.Apprendizado.exceptions.LinkTarefaInvalidoException;
@@ -7,7 +8,9 @@ import br.edu.infnet.Apprendizado.exceptions.TempoLimiteInvalidoException;
 import br.edu.infnet.Apprendizado.exceptions.VideoUrlInvalidoException;
 import br.edu.infnet.Apprendizado.interfaces.IPrinter;
 
-public abstract class Conteudo implements IPrinter{
+public abstract class Conteudo implements IPrinter, Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private String titulo;
 	private String descricao;

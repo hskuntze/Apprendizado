@@ -5,6 +5,8 @@ import java.time.Instant;
 import br.edu.infnet.Apprendizado.exceptions.VideoUrlInvalidoException;
 
 public class Video extends Conteudo {
+	private static final long serialVersionUID = 1L;
+	
 	private String videoUrl;
 	private boolean finalizado;
 	private Instant acessadoEm;

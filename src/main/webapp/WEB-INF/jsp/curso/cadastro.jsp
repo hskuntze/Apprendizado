@@ -20,6 +20,25 @@
 				<label for="titulo">Título:</label> 
 				<input type="text" class="form-control" placeholder="Título do curso" name="titulo">
 			</div>
+			<div class="mb-3 mt-3">
+				<label>Responsável:</label>
+				<select class="form-select" aria-label="Default select example">
+					<c:forEach var="r" items="${responsaveis}">
+						<option value="${r.id}">${r.nome}</option>
+					</c:forEach>
+				</select>
+			</div>
+			<div class="mb-3 mt-3">
+				<label>Conteúdos:</label>
+				<c:forEach var="c" items="${conteudos}">
+					<div class="form-check">
+					  <input class="form-check-input" type="checkbox" value="${c.titulo}">
+					  <label class="form-check-label">
+					   	${c.titulo}
+					  </label>
+					</div>
+				</c:forEach>
+			</div>
 			<span class="text-muted fw-light fst-italic" style="font-size: 13px">OBS.: Um curso tem duração de 30 dias a partir do momento do seu cadastro.</span>
 			<button type="submit" class="btn btn-primary mt-2" style="width: 100px">Submit</button>
 		</form>

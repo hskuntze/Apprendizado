@@ -24,6 +24,8 @@
 					<th scope="col">Título</th>
 					<th scope="col">Início</th>
 					<th scope="col">Fim</th>
+					<th scope="col">Responsável</th>
+					<th scope="col">Qtd. de Conteúdos</th>
 					<th scope="col">#</th>
 				</tr>
 			</thead>
@@ -34,6 +36,8 @@
 						<td>${b.titulo}</td>
 						<td>${b.inicio}</td>
 						<td>${b.fim}</td>
+						<td>${b.responsavel.nome}</td>
+						<td>${b.conteudos.size()}</td>
 						<td><a href="/cursos/${b.id}/excluir">Excluir</a></td>
 					</tr>
 				</c:forEach>

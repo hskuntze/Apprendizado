@@ -2,10 +2,21 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
 import br.edu.infnet.Apprendizado.interfaces.IPrinter;
 
+@Entity
+@Table(name = "tb_responsavel")
 public class Responsavel implements IPrinter{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String email;

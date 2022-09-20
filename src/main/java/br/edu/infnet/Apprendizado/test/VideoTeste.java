@@ -26,21 +26,23 @@ public class VideoTeste implements ApplicationRunner{
 	public void run(ApplicationArguments args) {
 		System.out.println("\n---- Vídeo ----");
 		String dir = "D:/hskun/Documents/";
-		String file = "videos.txt";
+		String file = "conteudos.txt";
 
 		try (BufferedReader br = new BufferedReader(new FileReader(dir + file))) {
 			String line = br.readLine();
 			while (line != null) {
 				String[] fields = line.split(";");
 
-				Video v = new Video();
-				v.setTitulo(fields[0]);
-				v.setDescricao(fields[1]);
-				v.setVideoUrl(fields[2]);
-				v.setFinalizado(Boolean.valueOf(fields[3]));
-				v.setAcessadoEm(Instant.parse(fields[4]));
-				
-				service.incluir(v);
+				if("V".equalsIgnoreCase(fields[0])) {
+					Video v = new Video();
+					v.setTitulo(fields[1]);
+					v.setDescricao(fields[2]);
+					v.setVideoUrl(fields[3]);
+					v.setFinalizado(Boolean.valueOf(fields[4]));
+					v.setAcessadoEm(Instant.parse(fields[5]));
+					
+					service.incluir(v);
+				}
 				line = br.readLine();
 			}
 			br.close();

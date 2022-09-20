@@ -26,21 +26,23 @@ public class TarefaTeste implements ApplicationRunner {
 	public void run(ApplicationArguments args) {
 		System.out.println("\n---- Tarefa ----");
 		String dir = "D:/hskun/Documents/";
-		String file = "tarefas.txt";
+		String file = "conteudos.txt";
 
 		try (BufferedReader br = new BufferedReader(new FileReader(dir + file))) {
 			String line = br.readLine();
 			while (line != null) {
 				String[] fields = line.split(";");
+				
+				if("T".equalsIgnoreCase(fields[0])) {
+					Tarefa t = new Tarefa();
+					t.setTitulo(fields[1]);
+					t.setDescricao(fields[2]);
+					t.setEntregue(Boolean.valueOf(fields[3]));
+					t.setDataFinal(Instant.parse(fields[4]));
+					t.setLinkTarefa(fields[5]);
 
-				Tarefa t = new Tarefa();
-				t.setTitulo(fields[0]);
-				t.setDescricao(fields[1]);
-				t.setEntregue(Boolean.valueOf(fields[2]));
-				t.setDataFinal(Instant.parse(fields[3]));
-				t.setLinkTarefa(fields[4]);
-
-				service.incluir(t);
+					service.incluir(t);
+				}
 				line = br.readLine();
 			}
 			br.close();

@@ -5,6 +5,8 @@ import java.time.Instant;
 import br.edu.infnet.Apprendizado.exceptions.LinkTarefaInvalidoException;
 
 public class Tarefa extends Conteudo{
+	private static final long serialVersionUID = 1L;
+	
 	private boolean entregue;
 	private Instant dataFinal;
 	private String linkTarefa;

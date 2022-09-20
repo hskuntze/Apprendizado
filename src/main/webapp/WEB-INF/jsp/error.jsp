@@ -14,8 +14,11 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"></c:import>
-	<div class="alert alert-danger" role="alert">
-		Erro!
+	<div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<div class="alert alert-danger mb-4 mt-4" role="alert" style="width: 600px; height: 300px; font-size: 50px; font-weigth: bold; display: flex; align-items: center; justify-content: center;">
+			<span>ERRO</span>
+		</div>
+		<button type="button" class="btn btn-dark mb-3" onclick="window.history.back()">Voltar</button>
 	</div>
 </body>
 </html>

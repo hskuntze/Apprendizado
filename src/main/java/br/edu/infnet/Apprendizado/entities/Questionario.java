@@ -5,6 +5,8 @@ import java.util.Map;
 import br.edu.infnet.Apprendizado.exceptions.TempoLimiteInvalidoException;
 
 public class Questionario extends Conteudo{
+	private static final long serialVersionUID = 1L;
+	
 	private Map<Integer, String> questoes;
 	private Map<Integer, String> respostas;
 	private Integer tempoLimite;

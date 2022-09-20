@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.infnet.Apprendizado.entities.Curso;
+import br.edu.infnet.Apprendizado.services.ConteudoService;
 import br.edu.infnet.Apprendizado.services.CursoService;
+import br.edu.infnet.Apprendizado.services.ResponsavelService;
 
 @Controller
 @RequestMapping(value = "/cursos")
@@ -18,6 +20,12 @@ public class CursoController {
 	@Autowired
 	private CursoService service;
 	
+	@Autowired
+	private ResponsavelService respService;
+	
+	@Autowired
+	private ConteudoService contService;
+	
 	@GetMapping(value = "/lista")
 	public String lista(Model model) {
 		model.addAttribute("listagemCursos", service.obterLista());
@@ -25,7 +33,9 @@ public class CursoController {
 	}
 	
 	@GetMapping(value = "/cadastro")
-	public String telaCadastro() {
+	public String telaCadastro(Model model) {
+		model.addAttribute("responsaveis", respService.obterLista());
+		model.addAttribute("conteudos", contService.obterLista());
 		return "curso/cadastro";
 	}
 	

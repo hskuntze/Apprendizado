@@ -1,3 +1,11 @@
-Curso de Java;Rodrigo Faro;rod@email.com
-Curso de PHP;William Bonner;bonner@email.com
-Curso de Go;Luisa Sonsa;sonsa@email.com
+C;Curso de Java;Rodrigo Faro;rod@email.com
+V;Aula 1;Aula sobre Orientação a Objetos com Java;https://www.youtube.com/watch?v=dQw4w9WgXcQ;true;2022-09-08T10:15:30.00Z
+V;Aula 2;Segunda aula sobre Orientação a Objetos com Java;https://www.youtube.com/watch?v=dQw4w9WgXcQ;false;2022-09-08T10:15:30.00Z
+T;Tarefa 1;Descrição da primeira tarefa;false;2022-10-03T10:15:30.00Z;-
+C;Curso de PHP;William Bonner;bonner@email.com
+V;Aula 1;Aula sobre Padrões de Design com PHP;https://www.youtube.com/watch?v=dQw4w9WgXcQ;true;2022-09-08T10:15:30.00Z
+T;Tarefa 1;Descrição da primeira tarefa;false;2022-10-03T10:15:30.00Z;-
+C;Curso de Go;Luisa Sonsa;sonsa@email.com
+V;Aula 1;Aula sobre Padrões de Design com Go;https://www.youtube.com/watch?v=dQw4w9WgXcQ;true;2022-09-08T10:15:30.00Z
+T;Tarefa 1;Descrição da primeira tarefa;false;2022-10-03T10:15:30.00Z;-
+T;Tarefa 2;Descrição da segunda tarefa;false;2022-10-02T10:10:00.00Z;-
