@@ -1,30 +1,35 @@
 package br.edu.infnet.Apprendizado.services;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.Apprendizado.entities.Responsavel;
+import br.edu.infnet.Apprendizado.entities.Usuario;
+import br.edu.infnet.Apprendizado.repositories.ResponsavelRepository;
 import br.edu.infnet.Apprendizado.test.AppImprimir;
 
 @Service
 public class ResponsavelService {
-	private static Map<Long, Responsavel> respMap = new HashMap<>();
-	private static Long id = 1L;
+	
+	@Autowired
+	private ResponsavelRepository repository;
 	
 	public void incluir(Responsavel responsavel) {
-		responsavel.setId(id++);
-		respMap.put(responsavel.getId(), responsavel);
+		repository.save(responsavel);
 		AppImprimir.relatorio(responsavel.getNome(), responsavel);
 	}
 	
 	public List<Responsavel> obterLista(){
-		return respMap.values().stream().toList();
+		return repository.findAll();
+	}
+	
+	public List<Responsavel> obterLista(Usuario usuario){
+		return repository.obterLista(usuario.getId());
 	}
 	
 	public void excluir(Long id) {
-		respMap.remove(id);
+		repository.deleteById(id);
 	}
 }

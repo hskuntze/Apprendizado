@@ -2,8 +2,13 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.time.Instant;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.edu.infnet.Apprendizado.exceptions.VideoUrlInvalidoException;
 
+@Entity
+@Table(name = "tb_video")
 public class Video extends Conteudo {
 	private static final long serialVersionUID = 1L;
 	

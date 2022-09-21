@@ -37,7 +37,7 @@
 				</c:if>
 				<c:if test="${not empty user}">
 					<li class="nav-item"><a class="nav-link" href="/logout">Logout,
-							${user}</a></li>
+							${user.nome}</a></li>
 				</c:if>
 			</ul>
 		</div>

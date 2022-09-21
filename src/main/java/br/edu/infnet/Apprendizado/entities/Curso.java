@@ -1,25 +1,48 @@
 package br.edu.infnet.Apprendizado.entities;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
 import br.edu.infnet.Apprendizado.interfaces.IPrinter;
 
-public class Curso implements IPrinter{
+@Entity
+@Table(name = "tb_curso")
+public class Curso implements IPrinter, Serializable{
+	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 	private String titulo;
 	private Instant inicio;
 	private Instant fim;
 	
-	//ORM pendente
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "responsavel_id", referencedColumnName = "id")
 	private Responsavel responsavel;
 	
-	//ORM pendente
+	@OneToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "tb_curso_conteudo",
+				joinColumns = @JoinColumn(name = "curso_id"),
+				inverseJoinColumns = @JoinColumn(name = "conteudo_id"))
 	private Set<Conteudo> conteudos = new HashSet<>();
 	
 	public Curso() {

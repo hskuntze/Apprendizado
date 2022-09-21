@@ -22,6 +22,7 @@ import br.edu.infnet.Apprendizado.entities.Curso;
 import br.edu.infnet.Apprendizado.entities.Questionario;
 import br.edu.infnet.Apprendizado.entities.Responsavel;
 import br.edu.infnet.Apprendizado.entities.Tarefa;
+import br.edu.infnet.Apprendizado.entities.Usuario;
 import br.edu.infnet.Apprendizado.entities.Video;
 import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
 import br.edu.infnet.Apprendizado.services.CursoService;
@@ -42,6 +43,9 @@ public class CursoTeste implements ApplicationRunner{
 		String dir = "D:/hskun/Documents/";
 		String file = "cursos.txt";
 		
+		Usuario u = new Usuario();
+		u.setId(2L);
+		
 		try (BufferedReader br = new BufferedReader(new FileReader(dir+file))) {
 			String line = br.readLine();
 			while(line != null) {
@@ -52,6 +56,7 @@ public class CursoTeste implements ApplicationRunner{
 						try {
 							conteudos = new HashSet<Conteudo>();
 							Responsavel r = new Responsavel(fields[2], fields[3]);
+							r.setUsuario(u);
 							
 							Curso c = new Curso(r, conteudos);
 							c.setTitulo(fields[1]);

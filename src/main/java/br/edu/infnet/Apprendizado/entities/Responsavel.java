@@ -2,10 +2,13 @@ package br.edu.infnet.Apprendizado.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
@@ -17,9 +20,14 @@ public class Responsavel implements IPrinter{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 	private String nome;
 	private String email;
+	
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
 	public Responsavel() {
 	}
@@ -57,6 +65,14 @@ public class Responsavel implements IPrinter{
 		this.email = email;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -84,5 +100,4 @@ public class Responsavel implements IPrinter{
 	public String toString() {
 		return "Responsavel id=" + id + "; " + nome + "; " + email;
 	}
-
 }

@@ -16,7 +16,7 @@ import br.edu.infnet.Apprendizado.entities.Video;
 import br.edu.infnet.Apprendizado.services.VideoService;
 
 @Component
-@Order(1)
+@Order(4)
 public class VideoTeste implements ApplicationRunner{
 	
 	@Autowired

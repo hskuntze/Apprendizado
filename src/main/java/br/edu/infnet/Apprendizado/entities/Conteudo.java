@@ -3,14 +3,29 @@ package br.edu.infnet.Apprendizado.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import br.edu.infnet.Apprendizado.exceptions.LinkTarefaInvalidoException;
 import br.edu.infnet.Apprendizado.exceptions.TempoLimiteInvalidoException;
 import br.edu.infnet.Apprendizado.exceptions.VideoUrlInvalidoException;
 import br.edu.infnet.Apprendizado.interfaces.IPrinter;
 
+@Entity
+@Table(name = "tb_conteudo")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Conteudo implements IPrinter, Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
 	private String titulo;
 	private String descricao;

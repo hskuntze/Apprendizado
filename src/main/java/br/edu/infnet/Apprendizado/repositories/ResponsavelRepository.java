@@ -1,6 +1,9 @@
 package br.edu.infnet.Apprendizado.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.edu.infnet.Apprendizado.entities.Responsavel;
@@ -8,4 +11,6 @@ import br.edu.infnet.Apprendizado.entities.Responsavel;
 @Repository
 public interface ResponsavelRepository extends JpaRepository<Responsavel, Long>{
 
+	@Query("FROM Responsavel r WHERE r.usuario.id = :userId")
+	List<Responsavel> obterLista(Long userId);
 }

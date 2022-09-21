@@ -17,7 +17,7 @@ import br.edu.infnet.Apprendizado.entities.Questionario;
 import br.edu.infnet.Apprendizado.services.QuestionarioService;
 
 @Component
-@Order(3)
+@Order(5)
 public class QuestionarioTeste implements ApplicationRunner{
 	
 	@Autowired

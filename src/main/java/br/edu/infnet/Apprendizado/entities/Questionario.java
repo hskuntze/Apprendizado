@@ -1,14 +1,23 @@
 package br.edu.infnet.Apprendizado.entities;
 
+import java.util.HashMap;
 import java.util.Map;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import br.edu.infnet.Apprendizado.exceptions.TempoLimiteInvalidoException;
 
+@Entity
+@Table(name = "tb_questionario")
 public class Questionario extends Conteudo{
 	private static final long serialVersionUID = 1L;
 	
-	private Map<Integer, String> questoes;
-	private Map<Integer, String> respostas;
+	@ElementCollection
+	private Map<Integer, String> questoes = new HashMap<>();
+	@ElementCollection
+	private Map<Integer, String> respostas = new HashMap<>();
 	private Integer tempoLimite;
 	
 	public Questionario() {
@@ -25,7 +34,6 @@ public class Questionario extends Conteudo{
 	 * Perguntas para o professor na próxima aula:
 	 * O Map também só define o 'get'? 
 	 */
-	
 	public Map<Integer, String> getQuestoes() {
 		return questoes;
 	}
@@ -33,7 +41,8 @@ public class Questionario extends Conteudo{
 	public void setQuestoes(Map<Integer, String> questoes) {
 		this.questoes = questoes;
 	}
-
+	
+	@ElementCollection
 	public Map<Integer, String> getRespostas() {
 		return respostas;
 	}

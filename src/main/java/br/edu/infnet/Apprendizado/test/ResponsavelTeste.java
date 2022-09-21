@@ -8,13 +8,16 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.Apprendizado.entities.Responsavel;
+import br.edu.infnet.Apprendizado.entities.Usuario;
 import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
 import br.edu.infnet.Apprendizado.services.ResponsavelService;
 
 @Component
+@Order(2)
 public class ResponsavelTeste implements ApplicationRunner{
 	
 	@Autowired
@@ -27,6 +30,9 @@ public class ResponsavelTeste implements ApplicationRunner{
 		String dir = "D:/hskun/Documents/";
 		String file = "responsaveis.txt";
 		
+		Usuario user = new Usuario();
+		user.setId(1L);
+		
 		try (BufferedReader br = new BufferedReader(new FileReader(dir+file))) {
 			String line = br.readLine();
 			while(line != null) {
@@ -34,6 +40,7 @@ public class ResponsavelTeste implements ApplicationRunner{
 					String[] fields = line.split(";");
 					
 					Responsavel r = new Responsavel(fields[0], fields[1]);
+					r.setUsuario(user);
 					
 					service.incluir(r);
 				} catch (ResponsavelInvalidoException e) {

@@ -16,7 +16,7 @@ import br.edu.infnet.Apprendizado.entities.Tarefa;
 import br.edu.infnet.Apprendizado.services.TarefaService;
 
 @Component
-@Order(2)
+@Order(3)
 public class TarefaTeste implements ApplicationRunner {
 	
 	@Autowired

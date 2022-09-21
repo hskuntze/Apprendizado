@@ -23,6 +23,7 @@
 					<th scope="col">ID</th>
 					<th scope="col">Nome</th>
 					<th scope="col">Email</th>
+					<th scope="col">Usuário</th>
 					<th scope="col">#</th>
 				</tr>
 			</thead>
@@ -32,6 +33,7 @@
 						<td>${b.id}</td>
 						<td>${b.nome}</td>
 						<td>${b.email}</td>
+						<td>${b.usuario.email}</td>
 						<td><a href="/responsaveis/${b.id}/excluir">Excluir</a></td>
 					</tr>
 				</c:forEach>
