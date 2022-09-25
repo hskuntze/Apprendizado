@@ -3,9 +3,9 @@ package br.edu.infnet.Apprendizado.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -35,15 +35,17 @@ public class Curso implements IPrinter, Serializable{
 	private Instant inicio;
 	private Instant fim;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "responsavel_id", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
+	
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "idResponsavel")
 	private Responsavel responsavel;
 	
-	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "tb_curso_conteudo",
-				joinColumns = @JoinColumn(name = "curso_id"),
-				inverseJoinColumns = @JoinColumn(name = "conteudo_id"))
-	private Set<Conteudo> conteudos = new HashSet<>();
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idConteudo")
+	private List<Conteudo> conteudos = new ArrayList<>();
 	
 	public Curso() {
 	}
@@ -69,7 +71,7 @@ public class Curso implements IPrinter, Serializable{
 		this.responsavel = responsavel;
 	}
 
-	public Curso(Long id, String titulo, Responsavel responsavel, Set<Conteudo> conteudos) {
+	public Curso(Long id, String titulo, Responsavel responsavel, List<Conteudo> conteudos) {
 		this.id = id;
 		this.titulo = titulo;
 		inicio = Instant.now();
@@ -78,7 +80,7 @@ public class Curso implements IPrinter, Serializable{
 		this.conteudos = conteudos;
 	}
 	
-	public Curso(Responsavel responsavel, Set<Conteudo> conteudos) throws ResponsavelInvalidoException {
+	public Curso(Responsavel responsavel, List<Conteudo> conteudos) throws ResponsavelInvalidoException {
 		inicio = Instant.now();
 		fim = inicio.plus(60, ChronoUnit.DAYS);
 		
@@ -120,6 +122,14 @@ public class Curso implements IPrinter, Serializable{
 	public void setFim(Instant fim) {
 		this.fim = fim;
 	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Responsavel getResponsavel() {
 		return responsavel;
@@ -129,11 +139,11 @@ public class Curso implements IPrinter, Serializable{
 		this.responsavel = responsavel;
 	}
 
-	public void setConteudos(Set<Conteudo> conteudos) {
+	public void setConteudos(List<Conteudo> conteudos) {
 		this.conteudos = conteudos;
 	}
 
-	public Set<Conteudo> getConteudos() {
+	public List<Conteudo> getConteudos() {
 		return conteudos;
 	}
 

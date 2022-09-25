@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.Apprendizado.entities.Curso;
+import br.edu.infnet.Apprendizado.entities.Usuario;
 import br.edu.infnet.Apprendizado.services.ConteudoService;
 import br.edu.infnet.Apprendizado.services.CursoService;
 import br.edu.infnet.Apprendizado.services.ResponsavelService;
@@ -27,8 +29,8 @@ public class CursoController {
 	private ConteudoService contService;
 	
 	@GetMapping(value = "/lista")
-	public String lista(Model model) {
-		model.addAttribute("listagemCursos", service.obterLista());
+	public String lista(Model model, @SessionAttribute("user") Usuario u) {
+		model.addAttribute("listagemCursos", service.obterLista(u));
 		return "curso/lista";
 	}
 	
@@ -40,8 +42,9 @@ public class CursoController {
 	}
 	
 	@PostMapping(value = "/incluir")
-	public String incluir(Curso curso) {
+	public String incluir(Curso curso, @SessionAttribute("user") Usuario u) {
 		if(curso != null) {
+			curso.setUsuario(u);
 			service.incluir(curso);
 		}
 		return "redirect:/cursos/lista";

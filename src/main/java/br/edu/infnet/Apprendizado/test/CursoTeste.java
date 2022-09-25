@@ -7,14 +7,13 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.Apprendizado.entities.Conteudo;
@@ -28,6 +27,7 @@ import br.edu.infnet.Apprendizado.exceptions.ResponsavelInvalidoException;
 import br.edu.infnet.Apprendizado.services.CursoService;
 
 @Component
+@Order(6)
 public class CursoTeste implements ApplicationRunner{
 
 	@Autowired
@@ -35,7 +35,7 @@ public class CursoTeste implements ApplicationRunner{
 	
 	@Override
 	public void run(ApplicationArguments args) {
-		Set<Conteudo> conteudos = null;
+		List<Conteudo> conteudos = null;
 		List<Curso> cursos = new ArrayList<>();
 		
 		System.out.println("\n---- Curso ----");
@@ -44,7 +44,7 @@ public class CursoTeste implements ApplicationRunner{
 		String file = "cursos.txt";
 		
 		Usuario u = new Usuario();
-		u.setId(2L);
+		u.setId(1L);
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(dir+file))) {
 			String line = br.readLine();
@@ -54,12 +54,13 @@ public class CursoTeste implements ApplicationRunner{
 				switch(fields[0].toUpperCase()) {
 					case "C":
 						try {
-							conteudos = new HashSet<Conteudo>();
+							conteudos = new ArrayList<>();
 							Responsavel r = new Responsavel(fields[2], fields[3]);
 							r.setUsuario(u);
 							
 							Curso c = new Curso(r, conteudos);
 							c.setTitulo(fields[1]);
+							c.setUsuario(u);
 							
 							cursos.add(c);
 						} catch (ResponsavelInvalidoException e) {
@@ -87,6 +88,7 @@ public class CursoTeste implements ApplicationRunner{
 		 				q.setTempoLimite(Integer.valueOf(fields[3]));
 		 				q.setQuestoes(questoes);
 		 				q.setRespostas(respostas);
+		 				q.setUsuario(u);
 						conteudos.add(q);
 						break;
 					case "T":
@@ -96,6 +98,7 @@ public class CursoTeste implements ApplicationRunner{
 						t.setEntregue(Boolean.valueOf(fields[3]));
 						t.setDataFinal(Instant.parse(fields[4]));
 						t.setLinkTarefa(fields[5]);
+						t.setUsuario(u);
 						conteudos.add(t);
 						break;
 					case "V":
@@ -105,16 +108,17 @@ public class CursoTeste implements ApplicationRunner{
 						v.setVideoUrl(fields[3]);
 						v.setFinalizado(Boolean.valueOf(fields[4]));
 						v.setAcessadoEm(Instant.parse(fields[5]));
+						v.setUsuario(u);
 						conteudos.add(v);
 						break;
 				}
 				line = br.readLine();
 			}
-			for(Curso c : cursos) {
-				service.incluir(c);
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+c.getId());
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+c.getResponsavel());
-				System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+c.getConteudos().size());
+			for(Curso cs : cursos) {
+				service.incluir(cs);
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+cs.getId());
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+cs.getResponsavel());
+				System.out.println(">>>>>>>>>>>>>>>>>>>>>> "+cs.getConteudos().size());
 			}
 			br.close();
 		} catch (FileNotFoundException e) {

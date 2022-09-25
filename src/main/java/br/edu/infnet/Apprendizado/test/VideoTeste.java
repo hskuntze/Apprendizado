@@ -12,6 +12,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.Apprendizado.entities.Usuario;
 import br.edu.infnet.Apprendizado.entities.Video;
 import br.edu.infnet.Apprendizado.services.VideoService;
 
@@ -27,6 +28,9 @@ public class VideoTeste implements ApplicationRunner{
 		System.out.println("\n---- Vídeo ----");
 		String dir = "D:/hskun/Documents/";
 		String file = "conteudos.txt";
+		
+		Usuario u = new Usuario();
+		u.setId(2L);
 
 		try (BufferedReader br = new BufferedReader(new FileReader(dir + file))) {
 			String line = br.readLine();
@@ -40,6 +44,7 @@ public class VideoTeste implements ApplicationRunner{
 					v.setVideoUrl(fields[3]);
 					v.setFinalizado(Boolean.valueOf(fields[4]));
 					v.setAcessadoEm(Instant.parse(fields[5]));
+					v.setUsuario(u);
 					
 					service.incluir(v);
 				}

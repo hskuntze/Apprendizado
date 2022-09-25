@@ -1,28 +1,29 @@
 package br.edu.infnet.Apprendizado.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.Apprendizado.entities.Conteudo;
+import br.edu.infnet.Apprendizado.entities.Usuario;
+import br.edu.infnet.Apprendizado.repositories.ConteudoRepository;
 
 @Service
 public class ConteudoService {
 	
 	@Autowired
-	private QuestionarioService questService;
-	@Autowired
-	private TarefaService tarefaService;
-	@Autowired
-	private VideoService videoService;
+	private ConteudoRepository repository;
 	
 	public List<Conteudo> obterLista(){
-		List<Conteudo> lista = new ArrayList<>();
-		lista.addAll(questService.obterLista());
-		lista.addAll(tarefaService.obterLista());
-		lista.addAll(videoService.obterLista());
-		return lista;
+		return repository.findAll();
+	}
+	
+	public List<Conteudo> obterLista(Usuario usuario){
+		return repository.obterLista(usuario.getId());
+	}
+
+	public void excluir(Long id) {
+		repository.deleteById(id);
 	}
 }

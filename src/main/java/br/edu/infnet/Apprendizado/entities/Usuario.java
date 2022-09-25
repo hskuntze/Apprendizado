@@ -32,6 +32,14 @@ public class Usuario implements IPrinter, Serializable{
 	@JoinColumn(name = "idUsuario")
 	private List<Responsavel> responsaveis = new ArrayList<>();
 	
+	@OneToMany
+	@JoinColumn(name = "idUsuario")
+	private List<Conteudo> conteudos = new ArrayList<>();
+	
+	@OneToMany
+	@JoinColumn(name = "idUsuario")
+	private List<Curso> cursos = new ArrayList<>();
+	
 	public Usuario() {
 	}
 
@@ -82,6 +90,22 @@ public class Usuario implements IPrinter, Serializable{
 
 	public void setResponsaveis(List<Responsavel> responsaveis) {
 		this.responsaveis = responsaveis;
+	}
+	
+	public List<Conteudo> getConteudos() {
+		return conteudos;
+	}
+
+	public void setConteudos(List<Conteudo> conteudos) {
+		this.conteudos = conteudos;
+	}
+
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 	@Override

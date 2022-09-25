@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import br.edu.infnet.Apprendizado.entities.Curso;
+import br.edu.infnet.Apprendizado.entities.Conteudo;
 
 @Repository
-public interface CursoRepository extends JpaRepository<Curso, Long>{
-	@Query("FROM Curso c WHERE c.usuario.id = :userId")
-	List<Curso> obterLista(Long userId);
+public interface ConteudoRepository extends JpaRepository<Conteudo, Long>{
+	
+	@Query("FROM Conteudo c WHERE c.usuario.id = :userId")
+	List<Conteudo> obterLista(Long userId);
 }

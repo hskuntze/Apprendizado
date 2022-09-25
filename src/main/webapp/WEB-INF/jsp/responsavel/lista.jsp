@@ -15,7 +15,7 @@
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"></c:import>
 	<div class="container mt-3">
-		<h4 class="mt-3">Classe: Responsável</h4>
+		<h4 class="mt-3">Responsáveis</h4>
 		<a href="/responsaveis/cadastro"><button class="btn btn-outline-secondary my-3">Cadastrar</button></a>
 		<table class="table table-hover table-striped">
 			<thead>

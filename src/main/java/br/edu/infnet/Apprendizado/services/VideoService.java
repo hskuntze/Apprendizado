@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.edu.infnet.Apprendizado.entities.Usuario;
 import br.edu.infnet.Apprendizado.entities.Video;
 import br.edu.infnet.Apprendizado.repositories.VideoRepository;
 import br.edu.infnet.Apprendizado.test.AppImprimir;
@@ -22,6 +23,10 @@ public class VideoService {
 	
 	public List<Video> obterLista(){
 		return repository.findAll();
+	}
+	
+	public List<Video> obterLista(Usuario usuario){
+		return repository.obterLista(usuario.getId());
 	}
 	
 	public void excluir(Long id) {

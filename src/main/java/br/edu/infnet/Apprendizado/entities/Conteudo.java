@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.edu.infnet.Apprendizado.exceptions.LinkTarefaInvalidoException;
@@ -29,6 +31,10 @@ public abstract class Conteudo implements IPrinter, Serializable{
 	private Long id;
 	private String titulo;
 	private String descricao;
+	
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
 	
 	public Conteudo() {
 	}
@@ -63,6 +69,14 @@ public abstract class Conteudo implements IPrinter, Serializable{
 		this.descricao = descricao;
 	}
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public abstract String apurar() throws TempoLimiteInvalidoException, LinkTarefaInvalidoException, VideoUrlInvalidoException;
 
 	@Override

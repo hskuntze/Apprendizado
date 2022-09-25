@@ -15,7 +15,7 @@
 <body>
 	<c:import url="/WEB-INF/jsp/menu.jsp"></c:import>
 	<div class="container mt-3">
-		<h4>Cadastro de Usuários</h4>
+		<h4>Usuários</h4>
 		<table class="table table-striped">
 			<thead>
 				<tr>
